@@ -32,14 +32,11 @@ body {
   display: flex;
 }
 
-
-
 /* Title CSS */
 .heading {
   z-index: 2;
   height: 70px;
   width: 100%;
-
 
   box-shadow: 0 1px 5px rgb(138, 137, 137);
   align-items: center;
@@ -47,14 +44,14 @@ body {
   background-color: var(--main-div-color);
 }
 
-
 .heading-padding {
   margin: 0px 10px;
 }
 
 .heading-title {
-  justify-content: center;
-  padding: 5px;
+  padding-left: 15px;
+  padding-top: 15px;
+  font-size: 1.5em;
 }
 
 .search-bar {
@@ -64,12 +61,12 @@ body {
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
-  width: 500px;
+  width: 700px;
+  height: 50px;
 
   font-size: 1.2em;
   font-family: inherit;
   padding-left: 20px;
-
 }
 
 .search-btn {
@@ -91,7 +88,7 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin: 2px 5px;
+  margin: 5px 5px;
 
   border: none;
   outline: none;
@@ -100,11 +97,15 @@ body {
 }
 
 .rounded-btn-expanded {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
   height: 50px;
   width: 270px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  margin-top: 4px;
+  margin: 8px 0px;
 
   border: none;
   outline: none;
@@ -112,8 +113,14 @@ body {
   font-family: inherit;
 }
 
+.git-btn {
+  position: fixed;
+  bottom: 20px;
+}
+
 /* Menu CSS */
 .div-menu {
+  position: fixed;
   width: auto;
   height: 100vh;
   margin-top: 71px;
@@ -130,6 +137,7 @@ body {
 .list-menu-expanded {
   padding-top: 18px;
   padding-left: 0px;
+  padding-right: 5px;
 }
 
 /* Content CSS */
