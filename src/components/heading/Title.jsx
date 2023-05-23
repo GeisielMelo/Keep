@@ -1,10 +1,14 @@
 import React from "react";
-import MenuIcon from '@mui/icons-material/Menu';
 
 function Title() {
   return (
     <div className="container heading-padding">
-      <button className="rounded-btn rounded"><MenuIcon /></button>
+      <img
+        width="50"
+        height="50"
+        src="https://img.icons8.com/carbon-copy/100/google-keep.png"
+        alt="google-keep-logo"
+      />
       <h1 className="heading-title">Reminders</h1>
     </div>
   );
