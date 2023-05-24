@@ -1,12 +1,7 @@
 import React from "react";
 
-function ChangeScreen() {
-  return <button>Change Screen</button>;
+function ChangeScreen(props) {
+  return <a onClick={props.change}>{props.text}</a>;
 }
 
 export default ChangeScreen;
-
-
-// ACHO QUE VOU USAR UM element <Link /> ou um <a> no lugar deste <button>
-
-// DAR PREFERENCIA PARA LINK
