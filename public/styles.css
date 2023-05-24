@@ -34,26 +34,6 @@ body {
   align-items: center;
 }
 
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.sign-box {
-  height: 500px;
-  width: 450px;
-  border: 1px solid black;
-  border-radius: 7px;
-}
-
 /* ////////////////////////////////////////////////////////////////////////// */
 /*                                Tittle CSS                                  */
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -280,7 +260,84 @@ form.create-note button {
 /*                                 Login CSS                                  */
 /* ////////////////////////////////////////////////////////////////////////// */
 
+.login-logo {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-/* ////////////////////////////////////////////////////////////////////////// */
-/*                                 Register CSS                               */
-/* ////////////////////////////////////////////////////////////////////////// */
+.login-large-text {
+  color: #202124;
+  font-size: 24px;
+  font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
+  font-weight: 400;
+  line-height: 1.3333;
+}
+
+.login-small-text {
+  padding-bottom: 1px;
+  padding-top: 7px;
+  color: #202124;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sign-box-out {
+  height: 500px;
+  width: 450px;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.sign-box-in {
+  width: 370px;
+  height: 410px
+}
+
+.input-box {
+  height: 55px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.sign-btn {
+  height: 40px;
+  width: 80px;
+
+  position: fixed;
+  bottom: 20px;
+  right: 0px;
+}
+
+.changeScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+
+  position: fixed;
+  bottom: 20px;
+  left: 0px;
+
+  color: #202124;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+}

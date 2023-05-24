@@ -1,7 +1,7 @@
 import React from "react";
 
 function ChangeScreen(props) {
-  return <a onClick={props.change}>{props.text}</a>;
+  return <span className="changeScreen" onClick={props.change}>{props.text}</span>;
 }
 
 export default ChangeScreen;
