@@ -4,7 +4,6 @@ import Logo from "./assets/Logo";
 import SignTitle from "./assets/SignTitle";
 import Input from "./assets/Input";
 import Button from "./assets/Button";
-import Zoom from "@mui/material/Zoom";
 
 function Login() {
   const [page, setPage] = useState(false);
@@ -26,11 +25,9 @@ function Login() {
             <SignTitle title="Sign Up" />
             <form action="">
               <Input type="email" />
+              <Input type="password" /> 
               <Input type="password" />
-              <Input type="password" />
-              <Zoom in={!page}>
-                <Button text="Sign Up" action={console.log("Sing UP Clicked")} />
-              </Zoom>
+              <Button text="Sign Up" action={console.log("Sing UP Clicked")} />
             </form>
             <ChangeScreen change={changePage} text="Already registered?"/>
           </>

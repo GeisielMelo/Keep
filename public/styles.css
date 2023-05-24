@@ -82,6 +82,7 @@ body {
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
+  cursor: pointer;
 
   font-size: 1.2em;
   font-family: inherit;
@@ -99,6 +100,7 @@ body {
   outline: none;
   resize: none;
   font-family: inherit;
+  cursor: pointer;
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -135,6 +137,7 @@ body {
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
   transition: width 0.5s ease;
+  cursor: pointer;
 
   border: none;
   outline: none;
@@ -314,6 +317,14 @@ form.create-note button {
   height: 55px;
   width: 100%;
   margin-top: 12px;
+
+  font-size: 1.2em;
+  font-family: inherit;
+  padding-left: 20px;
+}
+
+.input-box:hover{
+  box-shadow: 0 2px 5px rgb(24, 105, 167);
 }
 
 .sign-btn {
@@ -323,6 +334,19 @@ form.create-note button {
   position: fixed;
   bottom: 20px;
   right: 0px;
+  cursor: pointer;
+}
+
+.sign-btn:hover {
+  background-color: #494c5713;
+}
+
+.shadow {
+  resize: none;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
 .changeScreen {
@@ -340,4 +364,9 @@ form.create-note button {
   font-weight: 400;
   letter-spacing: 0.1px;
   line-height: 1.5;
+  cursor: pointer;
+}
+
+.changeScreen:hover {
+  color: rgb(24, 105, 167);
 }
