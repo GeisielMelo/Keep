@@ -1,12 +1,10 @@
 import React from "react";
-import Heading from "./components/Heading"
-import Body from "./components/Body";
+import RouterApp from "./Router";
 
 function App() {
   return (
     <div>
-      <Heading />
-      <Body />
+      <RouterApp />
     </div>
   );
 }
