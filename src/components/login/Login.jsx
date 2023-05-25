@@ -23,21 +23,21 @@ function Login() {
         {page ? (
           <>
             <SignTitle title="Sign Up" />
-            <form action="">
-              <Input type="email" />
-              <Input type="password" /> 
-              <Input type="password" />
-              <Button text="Sign Up" action={console.log("Sing UP Clicked")} />
+            <form action="/signup" method="POST">
+              <Input type="email" name="email"  placeholder="E-mail" />
+              <Input type="password" name="password" placeholder="Password" /> 
+              <Input type="password" name="passwordConfirm" placeholder="Password" />
+              <Button text="Sign Up" />
             </form>
             <ChangeScreen change={changePage} text="Already registered?"/>
           </>
         ) : (
           <>
             <SignTitle title="Sign In" />
-            <form action="">
-              <Input type="email" />
-              <Input type="password" />
-              <Button text="Sign In" action={console.log("Sing IN Clicked")} />
+            <form action="/signin" method="POST">
+              <Input type="email" name="email" placeholder="E-mail"/>
+              <Input type="password" name="password" placeholder="Password" />
+              <Button text="Sign In" />
             </form>
             <ChangeScreen change={changePage} text="Create Account"/>
           </>

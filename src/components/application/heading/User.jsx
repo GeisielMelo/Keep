@@ -1,12 +1,12 @@
 import React from "react";
-import RefreshIcon from '@mui/icons-material/Refresh';
+import SyncIcon from '@mui/icons-material/Sync';
 import LoginIcon from '@mui/icons-material/Login';
 
 function User() {
   return (
     <div className="container heading-padding">
-      <button className="rounded-btn rounded" title="Refresh"><RefreshIcon /></button>
-      <button className="rounded-btn rounded" title="Login"><LoginIcon /></button>
+      <button className="rounded-btn image" title="Refresh"><SyncIcon /></button>
+      <button className="rounded-btn " title="Login"><LoginIcon /></button>
     </div>
   );
 }
