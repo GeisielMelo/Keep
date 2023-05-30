@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 
-function NoteButton() {
+function NoteButton({ onPress }) {
   const [expanded, setExpanded] = useState(false);
   let timeoutId;
 
@@ -22,6 +22,7 @@ function NoteButton() {
       title="Notes"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onPress}
     >
       <EventNoteIcon />
       {expanded && <p>Notes</p>}

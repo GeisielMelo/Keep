@@ -1,391 +1,394 @@
 :root {
-    --first-color: #FFF;
-    --second-color: #FFF;
-    --third-color: #FFF;
-    --fourth-color: #FFF;
-    --body-color: #FFF;
-    --main-div-color: silver;
-    --shadow-color: rgb(138, 137, 137);
-  }
-  
-  html {
-    font-family: "Montserrat", sans-serif;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    height: auto;
-    background-color: var(--main-div-color);
-  }
-  
-  .fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* ////////////////////////////////////////////////////////////////////////// */
-  /*                                Tittle CSS                                  */
-  /* ////////////////////////////////////////////////////////////////////////// */
-  
-  .heading {
-    z-index: 2;
-    height: 70px;
-    width: 100%;
-  
-    box-shadow: 0 1px 5px var(--shadow-color);
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--main-div-color);
-  }
-  
-  .heading-padding {
-    margin: 0px 10px;
-  }
-  
-  .heading-title {
-    padding-left: 15px;
-    font-size: 1.5em;
-  }
-  
-  .search-bar {
-    resize: none;
-    outline: none;
-    border: none;
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-    width: 700px;
-    height: 50px;
-  
-    font-size: 1.2em;
-    font-family: inherit;
-    padding-left: 20px;
-  }
-  
-  .search-btn {
-    height: 50px;
-    width: 50px;
-    resize: none;
-    outline: none;
-    border: none;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-    cursor: pointer;
-  
-    font-size: 1.2em;
-    font-family: inherit;
-    resize: none;
-  }
-  
-  .rounded-btn {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin: 5px 5px;
-  
-    background-color: silver;
-    border: none;
-    outline: none;
-    resize: none;
-    font-family: inherit;
-    cursor: pointer;
-  }
-  
-  /* ////////////////////////////////////////////////////////////////////////// */
-  /*                                 Menu CSS                                   */
-  /* ////////////////////////////////////////////////////////////////////////// */
-  
-  .div-menu {
-    position: fixed;
-    width: auto;
-    height: 100vh;
-    margin-top: 71px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-    background-color: var(--main-div-color);
-  }
-  
-  .list-menu {
-    padding-top: 22px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  
-  .list-menu li {
-    padding-bottom: 10px;
-  }
-  
-  .animated-btn { 
-    display: flex;
-    align-items: center;
-    padding-left: 12px;
-  
-    height: 50px;
-    width: 50px;
-    margin: 0px 5px;
-    border-radius: 7px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-    transition: width 0.5s ease;
-    cursor: pointer;
-  
-    border: none;
-    outline: none;
-    resize: none;
-    font-family: inherit;
-  }
-  
-  .animated-btn p {
-    padding-left: 30%;
-  }
-  
-  .animated-btn:hover {
-    width: 200px;
-  }
-  
-  .git-btn {
-    position: fixed;
-    bottom: 20px;
-  
-    width: 50px;
-    height: 50px;
-    margin: 0px 5px;
-    padding-top: 12px;
-  
-    border-radius: 7px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-    border: none;
-    outline: none;
-    resize: none;
-  
-    font-family: inherit;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-  }
-  
-  .git-btn:hover {
-    position: fixed;
-    transition: height 0.2s ease;
-    height: 60px;
-    bottom: 25px;
-  }
-  
-  /* ////////////////////////////////////////////////////////////////////////// */
-  /*                                Content CSS                                 */
-  /* ////////////////////////////////////////////////////////////////////////// */
-  
-  .div-content {
-    width: 100%;
-    margin-top: 64px;
-    margin-left: 80px;
-    background-color: var(--main-div-color);
-  }
-  
-  .note {
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 2px 5px #ccc;
-    padding: 10px;
-    width: 240px;
-    margin: 16px;
-    float: left;
-  }
-  
-  .note h1 {
-    font-size: 1.1em;
-    margin-bottom: 6px;
-  }
-  
-  .note p {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-  
-  .note button {
-    position: relative;
-    float: right;
-    margin-right: 10px;
-    color: #f5ba13;
-    border: none;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  form.create-note {
-    position: relative;
-    width: 480px;
-    margin: 30px auto 20px auto;
-    background: #fff;
-    padding: 15px;
-    border-radius: 7px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-  }
-  
-  form.create-note input,
-  form.create-note textarea {
-    width: 100%;
-    border: none;
-    padding: 4px;
-    outline: none;
-    font-size: 1.2em;
-    font-family: inherit;
-    resize: none;
-  }
-  
-  form.create-note button {
-    position: absolute;
-    right: 18px;
-    bottom: -18px;
-    background: #f5ba13;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    outline: none;
-  }
-  
-  /* ////////////////////////////////////////////////////////////////////////// */
-  /*                                 Login CSS                                  */
-  /* ////////////////////////////////////////////////////////////////////////// */
-  
-  .login-logo {
-    position: relative;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .login-large-text {
-    color: #202124;
-    font-size: 24px;
-    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
-    font-weight: 400;
-    line-height: 1.3333;
-  }
-  
-  .login-small-text {
-    padding-bottom: 1px;
-    padding-top: 7px;
-    color: #202124;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.1px;
-    line-height: 1.5;
-  }
-  
-  .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .sign-box-out {
-    height: 500px;
-    width: 450px;
-    border: 1px solid black;
-    border-radius: 7px;
-  }
-  
-  .sign-box-in {
-    width: 370px;
-    height: 410px
-  }
-  
-  .input-box {
-    height: 55px;
-    width: 100%;
-    margin-top: 12px;
-  
-    font-size: 1.2em;
-    font-family: inherit;
-    padding-left: 20px;
-  }
-  
-  .input-box:hover{
-    box-shadow: 0 2px 5px rgb(24, 105, 167);
-  }
-  
-  .sign-btn {
-    height: 40px;
-    width: 80px;
-  
-    position: fixed;
-    bottom: 20px;
-    right: 0px;
-    cursor: pointer;
-  }
-  
-  .sign-btn:hover {
-    background-color: #494c5713;
-  }
-  
-  .shadow {
-    resize: none;
-    outline: none;
-    border: none;
-    border-radius: 7px;
-    box-shadow: 0 1px 5px var(--shadow-color);
-  }
-  
-  .changeScreen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-  
-    position: fixed;
-    bottom: 20px;
-    left: 0px;
-  
-    color: #202124;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.1px;
-    line-height: 1.5;
-    cursor: pointer;
-  }
-  
-  .changeScreen:hover {
-    color: rgb(24, 105, 167);
-  }
-  
-  /* ////////////////////////////////////////////////////////////////////////// */
-  /*                           Reload animation CSS                             */
-  /* ////////////////////////////////////////////////////////////////////////// */
-  
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
-  }
-  
-  .image {
-    animation: spin 2s linear infinite;
-  }
-  
+  --first-color: #FFF;
+  --second-color: #FFF;
+  --third-color: #FFF;
+  --fourth-color: #FFF;
+  --body-color: #FFF;
+  --main-div-color: silver;
+  --shadow-color: rgb(138, 137, 137);
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: auto;
+  background-color: var(--main-div-color);
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                Tittle CSS                                  */
+/* ////////////////////////////////////////////////////////////////////////// */
+
+.heading {
+  z-index: 2;
+  height: 70px;
+  width: 100%;
+
+  box-shadow: 0 1px 5px var(--shadow-color);
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--main-div-color);
+}
+
+.heading-padding {
+  margin: 0px 10px;
+}
+
+.heading-title {
+  padding-left: 15px;
+  font-size: 1.5em;
+}
+
+.search-bar {
+  resize: none;
+  outline: none;
+  border: none;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  width: 700px;
+  height: 50px;
+
+  font-size: 1.2em;
+  font-family: inherit;
+  padding-left: 20px;
+}
+
+.search-bar::-webkit-search-cancel-button {
+  margin-right: 20px;
+}
+
+.search-btn {
+  height: 50px;
+  width: 50px;
+  resize: none;
+  outline: none;
+  border: none;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  cursor: pointer;
+
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+
+.rounded-btn {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 5px 5px;
+
+  background-color: silver;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                 Menu CSS                                   */
+/* ////////////////////////////////////////////////////////////////////////// */
+
+.div-menu {
+  position: fixed;
+  width: auto;
+  height: 100vh;
+  margin-top: 71px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  background-color: var(--main-div-color);
+}
+
+.list-menu {
+  padding-top: 22px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.list-menu li {
+  padding-bottom: 10px;
+}
+
+.animated-btn { 
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+
+  height: 50px;
+  width: 50px;
+  margin: 0px 5px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  transition: width 0.5s ease;
+  cursor: pointer;
+
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+}
+
+.animated-btn p {
+  padding-left: 30%;
+}
+
+.animated-btn:hover {
+  width: 200px;
+}
+
+.git-btn {
+  position: fixed;
+  bottom: 20px;
+
+  width: 50px;
+  height: 50px;
+  margin: 0px 5px;
+  padding-top: 12px;
+
+  border-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  border: none;
+  outline: none;
+  resize: none;
+
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.git-btn:hover {
+  position: fixed;
+  transition: height 0.2s ease;
+  height: 60px;
+  bottom: 25px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                Content CSS                                 */
+/* ////////////////////////////////////////////////////////////////////////// */
+
+.div-content {
+  width: 100%;
+  margin-top: 64px;
+  margin-left: 80px;
+  background-color: var(--main-div-color);
+}
+
+.note {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  margin: 16px;
+  float: left;
+}
+
+.note h1 {
+  font-size: 1.1em;
+  margin-bottom: 6px;
+}
+
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note button {
+  position: relative;
+  float: right;
+  margin-right: 10px;
+  color: #f5ba13;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+}
+
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+}
+
+form.create-note input,
+form.create-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                                 Login CSS                                  */
+/* ////////////////////////////////////////////////////////////////////////// */
+
+.login-logo {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-large-text {
+  color: #202124;
+  font-size: 24px;
+  font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
+  font-weight: 400;
+  line-height: 1.3333;
+}
+
+.login-small-text {
+  padding-bottom: 1px;
+  padding-top: 7px;
+  color: #202124;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sign-box-out {
+  height: 500px;
+  width: 450px;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.sign-box-in {
+  width: 370px;
+  height: 410px
+}
+
+.input-box {
+  height: 55px;
+  width: 100%;
+  margin-top: 12px;
+
+  font-size: 1.2em;
+  font-family: inherit;
+  padding-left: 20px;
+}
+
+.input-box:hover{
+  box-shadow: 0 2px 5px rgb(24, 105, 167);
+}
+
+.sign-btn {
+  height: 40px;
+  width: 80px;
+
+  position: fixed;
+  bottom: 20px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.sign-btn:hover {
+  background-color: #494c5713;
+}
+
+.shadow {
+  resize: none;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+}
+
+.changeScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+
+  position: fixed;
+  bottom: 20px;
+  left: 0px;
+
+  color: #202124;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.changeScreen:hover {
+  color: rgb(24, 105, 167);
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                           Reload animation CSS                             */
+/* ////////////////////////////////////////////////////////////////////////// */
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+.image {
+  animation: spin 2s linear infinite;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 
-function DoneButton() {
+function DoneButton({ onPress }) {
   const [expanded, setExpanded] = useState(false);
   let timeoutId;
 
@@ -22,6 +22,7 @@ function DoneButton() {
       title="Done"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onPress}
     >
       <DoneIcon />
       {expanded && <p>Done</p>}

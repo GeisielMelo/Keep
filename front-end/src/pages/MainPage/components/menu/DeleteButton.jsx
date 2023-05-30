@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function DeleteButton() {
+function DeleteButton({onPress}) {
   const [expanded, setExpanded] = useState(false);
   let timeoutId;
 
@@ -22,6 +22,7 @@ function DeleteButton() {
       title="Deleted"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onPress}
     >
       <DeleteIcon />
       {expanded && <p>Deleted</p>}
