@@ -55,6 +55,11 @@ function MainPage() {
     (async () => await loadData())();
   }, []);
 
+
+  const handleAdd = () => {
+    loadData();
+  }
+  
   // const handleDelete = async (repository) => {
   //   console.log("delete repo", repository);
   //   await destroyRepository(user?.id, repository._id);
@@ -96,7 +101,7 @@ function MainPage() {
 
       <div className="container">
         <div className="div-content">
-          <CreateArea onAdd={console.log()} />
+          <CreateArea onAdd={handleAdd} />
           {notes.map((note) => {
             return (
               <Note
