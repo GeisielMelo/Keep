@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
-import { getNotes } from "../../services/api";
-
+import { getNotes, getOneNote, createNote, destroyNote } from "../../services/api";
 import Title from "./components/heading/Title.jsx";
 import Search from "./components/heading/Search.jsx";
 import User from "./components/heading/User.jsx";
@@ -15,13 +14,14 @@ import CreateArea from "./components/main/CreateArea.jsx";
 function MainPage() {
   const { user } = useContext(AuthContext);
   const [notes, setNotes] = useState([]);
+  const [page, setPage] = useState("active");
 
   const [loading, setLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const loadData = async (query = "active") => {
-    if (query === "" | query === undefined) {
+    if ((query === "") || (query === undefined)) {
       query = "active";
     }
 
@@ -55,16 +55,56 @@ function MainPage() {
     (async () => await loadData())();
   }, []);
 
+  ////////////////////////////////////////////////////////////////////////////
 
-  const handleAdd = () => {
-    loadData();
-  }
-  
-  // const handleDelete = async (repository) => {
-  //   console.log("delete repo", repository);
-  //   await destroyRepository(user?.id, repository._id);
-  //   await loadData();
-  // };
+  const handleAdd = async () => {
+    await loadData();
+  };
+
+  const handleDelete = async (noteId) => {
+    try {
+      const response = await getOneNote(user?.id, noteId);
+      if (!response) {
+        alert("Note not found");
+      }
+      const note = response.data;
+      await createNote(user?.id, note.title, note.content, "deleted");
+      await destroyNote(user?.id, noteId);
+      await loadData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlePermanentlyDelete = async (noteId) => {
+    try {
+      const response = await getOneNote(user?.id, noteId);
+      if (!response) {
+        alert("Note not found");
+      }
+      await destroyNote(user?.id, noteId);
+      await loadData("deleted");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleMainPage = async () => {
+    setPage("active");
+    await loadData("active");
+  };
+
+  const handleDonePage = async () => {
+    setPage("done");
+    await loadData("done");
+  };
+
+  const handleTrashPage = async () => {
+    setPage("deleted");
+    await loadData("deleted");
+  };
+
+  ////////////////////////////////////////////////////////////////////////////
 
   if (loadingError) {
     return <div className="loading">{errorMessage}</div>;
@@ -74,24 +114,26 @@ function MainPage() {
     return <div className="loading">Loading...</div>;
   }
 
+  ////////////////////////////////////////////////////////////////////////////
+
   return (
     <div>
       <div className="heading container fixed">
         <Title />
-        <Search onSearch={(query) => loadData(query)} />
-        <User onPress={() => loadData("active")} />
+        <Search onSearch={async (query) => loadData(query)} />
+        <User onPress={async () => loadData(page)} />
       </div>
 
       <div className="div-menu fixed">
         <ul className="list-menu">
           <li>
-            <NoteButton onPress={() => loadData("active")} />
+            <NoteButton onPress={handleMainPage} />
           </li>
           <li>
-            <DoneButton onPress={() => loadData("done")} />
+            <DoneButton onPress={handleDonePage} />
           </li>
           <li>
-            <DeleteButton onPress={() => loadData("deleted")} />
+            <DeleteButton onPress={handleTrashPage} />
           </li>
           <li>
             <GitHubButton />
@@ -101,18 +143,40 @@ function MainPage() {
 
       <div className="container">
         <div className="div-content">
-          <CreateArea onAdd={handleAdd} />
-          {notes.map((note) => {
-            return (
+          {page === "active" ? (
+            <>
+              <CreateArea onAdd={handleAdd} />
+              {notes.map((note) => (
+                <Note
+                  key={note._id}
+                  id={note._id}
+                  title={note.title}
+                  content={note.content}
+                  onDelete={() => handleDelete(note._id)}
+                />
+              ))}
+            </>
+          ) : page === "done" ? (
+            notes.map((note) => (
               <Note
                 key={note._id}
                 id={note._id}
                 title={note.title}
                 content={note.content}
-                onDelete={console.log()}
+                onDelete={() => handleDelete(note._id)}
               />
-            );
-          })}
+            ))
+          ) : page === "deleted" ? (
+            notes.map((note) => (
+              <Note
+                key={note._id}
+                id={note._id}
+                title={note.title}
+                content={note.content}
+                onDelete={() => handlePermanentlyDelete(note._id)}
+              />
+            ))
+          ) : null}
         </div>
       </div>
     </div>
