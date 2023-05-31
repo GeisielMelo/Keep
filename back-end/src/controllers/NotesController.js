@@ -28,7 +28,7 @@ class NotesController {
   async show(req, res) {
     try {
       const { user_id, note_id } = req.params;
-      
+
       // Verify if user exists.
       const user = await User.findById(user_id);
       if (!user) {
@@ -49,7 +49,7 @@ class NotesController {
   async create(req, res) {
     try {
       const { user_id } = req.params;
-      const { title, content } = req.body;
+      const { title, content, status } = req.body;
 
       // Verify if user exists.
       const user = await User.findById(user_id);
@@ -62,7 +62,7 @@ class NotesController {
         userId: user_id,
         title,
         content,
-        status: "active",
+        status
       });
       return res.status(201).json(newNote);
 
