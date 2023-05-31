@@ -129,9 +129,9 @@ function MainPage() {
           <li>
             <NoteButton onPress={handleMainPage} />
           </li>
-          <li>
+          {/* <li>
             <DoneButton onPress={handleDonePage} />
-          </li>
+          </li> */}
           <li>
             <DeleteButton onPress={handleTrashPage} />
           </li>
