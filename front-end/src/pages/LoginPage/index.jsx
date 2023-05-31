@@ -9,34 +9,84 @@ import SignTitle from "./components/SignTitle";
 import Input from "./components/Input";
 import Button from "./components/Button";
 
-
 function LoginPage() {
-  const [page, switchPage] = useState(false);
+  const [page, setPage] = useState("singIn");
   const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
+  const [singUpError, setSingUpError] = useState(false);
+  const [singInError, setSingInError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const passwordMatch = () => password === password2;
+  const passwordLength = () => password.length >= 6;
+
+  const showErroMessage = (message) => {
+    setErrorMessage(message);
+    setTimeout(() => {
+      setSingInError(false);
+      setSingUpError(false);
+      setErrorMessage("");
+    }, 4000);
+  };
+
   const handleSignIn = async () => {
-    login(email, password);
-    await createSession(email, password);
+    if (email === "" || password === "") {
+      setSingInError(true);
+      return showErroMessage("Fill all fields.");
+    }
+
+    try {
+      setPage("loading");
+      await login(email, password);
+      await createSession(email, password);
+    } catch (error) {
+      console.log(error);
+      setPage("singIn");
+      setSingInError(true);
+      showErroMessage("Internal server error.");
+    }
   };
 
   const handleSingUp = async () => {
-    if (password <= 8) {
-      return alert("Password must be at least 8 characters.");
+    if  (email === "" || password === "" || password2 === "") {
+      setSingUpError(true);
+      return showErroMessage("Fill all fields.");
     }
 
-    if (password !== password2) {
-      return alert("Passwords do not match.");
-    } else {
+    if (!passwordLength()) {
+      setSingUpError(true);
+      return showErroMessage("Password must have at least 6 characters.");
+    }
+
+    if (!passwordMatch()) {
+      setSingUpError(true);
+      return showErroMessage("Passwords don't match.");
+    }
+
+    try {
+      setPage("loading");
       await createUser(email, password);
+      await login(email, password);
+      await createSession(email, password);
+    } catch (error) {
+      console.log(error);
+      setPage("singUp");
+      setSingUpError(true);
+      showErroMessage("Internal server error.");
     }
   };
 
-  const changePage = () => {
-    switchPage((page) => !page);
+  const handleSingInPage = () => {
+    setPage("singIn");
+    setPassword2("");
+  };
+
+  const handleSingUpPage = () => {
+    setPage("singUp");
     setPassword2("");
   };
 
@@ -44,7 +94,7 @@ function LoginPage() {
     <div className="center sign-box-out">
       <div className="center sign-box-in flex-column">
         <Logo />
-        {page ? (
+        {page === "singUp" ? (
           <div>
             <SignTitle title="Sign Up" />
             <Input
@@ -69,9 +119,13 @@ function LoginPage() {
               onChange={(e) => setPassword2(e.target.value)}
             />
             <Button text="Sign Up" onClick={handleSingUp} />
-            <ChangeScreen change={changePage} text="Already registered?" />
+            <ChangeScreen
+              change={handleSingInPage}
+              text="Already registered?"
+            />
+            {singUpError && <p className="error-message">{errorMessage}</p>}
           </div>
-        ) : (
+        ) : page === "singIn" ? (
           <div>
             <SignTitle title="Sign In" />
             <Input
@@ -89,9 +143,14 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button text="Sign In" onClick={handleSignIn} />
-            <ChangeScreen change={changePage} text="Create Account" />
+            <ChangeScreen change={handleSingUpPage} text="Create Account" />
+            {singInError && <p className="error-message">{errorMessage}</p>}
           </div>
-        )}
+        ) : page === "loading" ? (
+          <div className="loading-spinner">
+            <div className="loading-spinner-animation"></div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
