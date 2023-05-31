@@ -1,11 +1,13 @@
 :root {
-  --first-color: #FFF;
-  --second-color: #FFF;
-  --third-color: #FFF;
-  --fourth-color: #FFF;
-  --body-color: #FFF;
-  --main-div-color: silver;
-  --shadow-color: rgb(138, 137, 137);
+  --first-color: #6096B4;
+  --second-color: #BDCDD6;
+  --third-color: #93BFCF;
+  --fourth-color: #FFFFFF;
+
+  --text-color: black;
+  --shadow-color: #292828;
+  --shadow-hover-login: rgb(24, 105, 167);
+  --button-hover-login: #494c5713;
 }
 
 html {
@@ -20,7 +22,7 @@ html {
 
 body {
   height: auto;
-  background-color: var(--main-div-color);
+  background-color: var(--first-color);
 }
 
 .fixed {
@@ -47,7 +49,7 @@ body {
   box-shadow: 0 1px 5px var(--shadow-color);
   align-items: center;
   justify-content: space-between;
-  background-color: var(--main-div-color);
+  background-color: var(--first-color);
 }
 
 .heading-padding {
@@ -66,6 +68,7 @@ body {
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   box-shadow: 0 1px 5px var(--shadow-color);
+  background-color: var(--fourth-color);
   width: 700px;
   height: 50px;
 
@@ -87,11 +90,16 @@ body {
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
   box-shadow: 0 1px 5px var(--shadow-color);
+  background-color: var(--fourth-color);
   cursor: pointer;
 
   font-size: 1.2em;
   font-family: inherit;
   resize: none;
+}
+
+.search-btn:hover {
+  background-color: var(--third-color);
 }
 
 .rounded-btn {
@@ -100,7 +108,7 @@ body {
   border-radius: 50%;
   margin: 5px 5px;
 
-  background-color: silver;
+  background-color: var(--first-color);
   border: none;
   outline: none;
   resize: none;
@@ -109,7 +117,7 @@ body {
 }
 
 .rounded-btn:hover {
-  background-color: #20212469;
+  background-color: var(--third-color);
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -122,7 +130,7 @@ body {
   height: 100vh;
   margin-top: 71px;
   box-shadow: 0 1px 5px var(--shadow-color);
-  background-color: var(--main-div-color);
+  background-color: var(--first-color);
 }
 
 .list-menu {
@@ -144,6 +152,8 @@ body {
   width: 50px;
   margin: 0px 5px;
   border-radius: 7px;
+  color: var(--first-color);
+  background-color: var(--fourth-color);
   box-shadow: 0 1px 5px var(--shadow-color);
   transition: width 0.5s ease;
   cursor: pointer;
@@ -173,6 +183,7 @@ body {
 
   border-radius: 7px;
   box-shadow: 0 1px 5px var(--shadow-color);
+  background-color: var(--fourth-color);
   border: none;
   outline: none;
   resize: none;
@@ -180,7 +191,7 @@ body {
   font-family: inherit;
   text-align: center;
   text-decoration: none;
-  color: black;
+  color: var(--first-color);
 }
 
 .git-btn:hover {
@@ -198,13 +209,13 @@ body {
   width: 100%;
   margin-top: 64px;
   margin-left: 80px;
-  background-color: var(--main-div-color);
+  background-color: var(--first-color);
 }
 
 .note {
-  background: #fff;
+  background: var(--fourth-color);
   border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
+  box-shadow: 0 2px 5px var(--shadow-color);
   padding: 10px;
   width: 240px;
   margin: 16px;
@@ -227,7 +238,9 @@ body {
   position: relative;
   float: right;
   margin-right: 10px;
-  color: #f5ba13;
+  color: var(--first-color);
+  background-color: var(--third-color);
+  border-radius: 7px;
   border: none;
   width: 36px;
   height: 36px;
@@ -235,11 +248,15 @@ body {
   outline: none;
 }
 
+.note button:hover {
+  background-color: var(--second-color);
+}
+
 form.create-note {
   position: relative;
   width: 480px;
   margin: 30px auto 20px auto;
-  background: #fff;
+  background: var(--fourth-color);
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 5px var(--shadow-color);
@@ -254,14 +271,15 @@ form.create-note textarea {
   font-size: 1.2em;
   font-family: inherit;
   resize: none;
+  background-color: var(--fourth-color);
 }
 
 form.create-note .create-note {
   position: absolute;
   right: 20px;
   bottom: -18px;
-  background: #f5ba13;
-  color: #fff;
+  background: var(--third-color);
+  color: var(--first-color);
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -275,8 +293,8 @@ form.create-note .close-note {
   position: absolute;
   right: 70px;
   bottom: -18px;
-  background: #f5ba13;
-  color: #fff;
+  background: var(--third-color);
+  color: var(--first-color);
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -284,6 +302,10 @@ form.create-note .close-note {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+}
+
+form.create-note button:hover {
+  background-color: var(--second-color);
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -298,7 +320,7 @@ form.create-note .close-note {
 }
 
 .login-large-text {
-  color: #202124;
+  color: var(--text-color);
   font-size: 24px;
   font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
   font-weight: 400;
@@ -308,7 +330,7 @@ form.create-note .close-note {
 .login-small-text {
   padding-bottom: 1px;
   padding-top: 7px;
-  color: #202124;
+  color: var(--text-color);
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.1px;
@@ -331,7 +353,7 @@ form.create-note .close-note {
 .sign-box-out {
   height: 500px;
   width: 450px;
-  border: 1px solid black;
+  border: 1px solid var(--text-color);
   border-radius: 7px;
 }
 
@@ -351,21 +373,31 @@ form.create-note .close-note {
 }
 
 .input-box:hover{
-  box-shadow: 0 2px 5px rgb(24, 105, 167);
+  box-shadow: 0 2px 5px var(--shadow-hover-login);
 }
+
+.error-message {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+  border-bottom: 1px solid red;
+  display: inline-block;
+}
+
+
 
 .sign-btn {
   height: 40px;
   width: 80px;
 
   position: fixed;
-  bottom: 20px;
+  bottom: 5px;
   right: 0px;
   cursor: pointer;
 }
 
 .sign-btn:hover {
-  background-color: #494c5713;
+  background-color: var(--button-hover-login);
 }
 
 .shadow {
@@ -383,10 +415,10 @@ form.create-note .close-note {
   height: 40px;
 
   position: fixed;
-  bottom: 20px;
+  bottom: 5px;
   left: 0px;
 
-  color: #202124;
+  color: var(--text-color);
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.1px;
@@ -395,7 +427,7 @@ form.create-note .close-note {
 }
 
 .changeScreen:hover {
-  color: rgb(24, 105, 167);
+  color: var(--shadow-hover-login);
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -410,4 +442,34 @@ form.create-note .close-note {
 
 .image {
   animation: spin 1s linear infinite;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                             Load animation CSS                             */
+/* ////////////////////////////////////////////////////////////////////////// */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner-animation {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid var(--third-color);
+  border-top-color: var(--fourth-color);
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
