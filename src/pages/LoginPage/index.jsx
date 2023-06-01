@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { createUser } from "../../services/api.js";
+import { createUser, checkUserEmail } from "../../services/api.js";
 import { createSession } from "../../services/api";
 import { AuthContext } from "../../context/auth";
 
@@ -11,6 +11,7 @@ import Button from "./components/Button";
 
 function LoginPage() {
   const [page, setPage] = useState("singIn");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ function LoginPage() {
   const passwordMatch = () => password === password2;
   const passwordLength = () => password.length >= 6;
 
-  const showErroMessage = (message) => {
+  const showWarning = (message) => {
     setErrorMessage(message);
     setTimeout(() => {
       setSingInError(false);
@@ -33,50 +34,75 @@ function LoginPage() {
     }, 4000);
   };
 
+  const isEmailUsed = async () => {
+    const response = await checkUserEmail(email);
+    if (response.status === 200) {
+      return true;
+    }
+    if (response.status === 204) {
+      return false;
+    }
+  };
+
   const handleSignIn = async () => {
     if (email === "" || password === "") {
       setSingInError(true);
-      return showErroMessage("Fill all fields.");
+      return showWarning("Fill all fields.");
     }
 
     try {
+      setIsButtonDisabled(true);
       setPage("loading");
       await login(email, password);
       await createSession(email, password);
+      setIsButtonDisabled(false);
     } catch (error) {
       console.log(error);
       setPage("singIn");
       setSingInError(true);
-      showErroMessage("Internal server error.");
+      showWarning("Invalid email or password.");
+      setIsButtonDisabled(false);
     }
   };
 
   const handleSingUp = async () => {
-    if  (email === "" || password === "" || password2 === "") {
+    if (email === "" || password === "" || password2 === "") {
       setSingUpError(true);
-      return showErroMessage("Fill all fields.");
+      return showWarning("Fill all fields.");
     }
 
     if (!passwordLength()) {
       setSingUpError(true);
-      return showErroMessage("Password must have at least 6 characters.");
+      return showWarning("Password must have at least 6 characters.");
     }
 
     if (!passwordMatch()) {
       setSingUpError(true);
-      return showErroMessage("Passwords don't match.");
+      return showWarning("Passwords don't match.");
     }
 
     try {
+      setIsButtonDisabled(true);
       setPage("loading");
+
+      const emailUsed = await isEmailUsed();
+      if (emailUsed) {
+        setPage("singUp");
+        setSingUpError(true);
+        setIsButtonDisabled(false);
+        return showWarning("Email is already used.");
+      }
+
       await createUser(email, password);
       await login(email, password);
       await createSession(email, password);
+      setIsButtonDisabled(false);
     } catch (error) {
       console.log(error);
       setPage("singUp");
       setSingUpError(true);
-      showErroMessage("Internal server error.");
+      showWarning("Internal server error.");
+      setIsButtonDisabled(false);
     }
   };
 
@@ -118,7 +144,11 @@ function LoginPage() {
               placeholder="Password"
               onChange={(e) => setPassword2(e.target.value)}
             />
-            <Button text="Sign Up" onClick={handleSingUp} />
+            <Button
+              text="Sign Up"
+              status={isButtonDisabled}
+              onClick={handleSingUp}
+            />
             <ChangeScreen
               change={handleSingInPage}
               text="Already registered?"
@@ -142,7 +172,11 @@ function LoginPage() {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button text="Sign In" onClick={handleSignIn} />
+            <Button
+              text="Sign In"
+              status={isButtonDisabled}
+              onClick={handleSignIn}
+            />
             <ChangeScreen change={handleSingUpPage} text="Create Account" />
             {singInError && <p className="error-message">{errorMessage}</p>}
           </div>
