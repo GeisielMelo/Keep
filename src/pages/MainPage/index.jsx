@@ -5,11 +5,11 @@ import Title from "./components/heading/Title.jsx";
 import Search from "./components/heading/Search.jsx";
 import User from "./components/heading/User.jsx";
 import NoteButton from "./components/menu/NoteButton.jsx";
-import DoneButton from "./components/menu/DoneButton.jsx";
 import DeleteButton from "./components/menu/DeleteButton.jsx";
 import GitHubButton from "./components/menu/GitHubButton.jsx";
 import Note from "./components/main/Note.jsx";
 import CreateArea from "./components/main/CreateArea.jsx";
+// import DoneButton from "./components/menu/DoneButton.jsx";
 
 function MainPage() {
   const { user } = useContext(AuthContext);
@@ -94,10 +94,10 @@ function MainPage() {
     await loadData("active");
   };
 
-  const handleDonePage = async () => {
-    setPage("done");
-    await loadData("done");
-  };
+  // const handleDonePage = async () => {
+  //   setPage("done");
+  //   await loadData("done");
+  // };
 
   const handleTrashPage = async () => {
     setPage("deleted");
