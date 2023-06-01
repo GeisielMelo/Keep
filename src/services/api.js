@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://reminders-api.onrender.com",
+  baseURL: "https://reminders-api-tn03.onrender.com/",
 });
 
 export const createUser = async (email, password) => {
