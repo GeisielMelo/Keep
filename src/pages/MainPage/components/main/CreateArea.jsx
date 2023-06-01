@@ -3,7 +3,7 @@ import { createNote } from "../../../../services/api.js";
 import { AuthContext } from "../../../../context/auth.jsx";
 import AddIcon from "@mui/icons-material/Add";
 import UpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Fab from "@mui/material/Fab";
+import Fab from '@mui/material/Fab';
 import Zoom from "@mui/material/Zoom";
 
 function CreateArea({ onAdd }) {
