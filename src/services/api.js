@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://reminders-api.onrender.com",
 });
 
 export const createUser = async (email, password) => {
@@ -10,6 +10,10 @@ export const createUser = async (email, password) => {
 
 export const createSession = async (email, password) => {
   return api.post("/sessions/", { email, password });
+};
+
+export const checkUserEmail = async (email) => {
+  return api.get(`/sessions/${email}/`);
 };
 
 export const createNote = async (userId, title, content, status) => {
