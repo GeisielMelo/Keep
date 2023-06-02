@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import SyncIcon from "@mui/icons-material/Sync";
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 import LoginIcon from "@mui/icons-material/Login";
 import { AuthContext } from "../../../../context/auth.jsx";
 
@@ -26,7 +26,7 @@ function User({ onPress }) {
         title="Refresh"
         onClick={handleRefresh}
       >
-        <SyncIcon />
+        <AutorenewIcon />
       </button>
       <button className="rounded-btn" title="Login" onClick={handleLogout}>
         <LoginIcon />
