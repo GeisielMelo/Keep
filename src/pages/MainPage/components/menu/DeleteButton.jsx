@@ -19,13 +19,13 @@ function DeleteButton({onPress}) {
   return (
     <button
       className="animated-btn"
-      title="Deleted"
+      title="Deleted notes."
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onPress}
     >
       <DeleteIcon />
-      {expanded && <p>Deleted</p>}
+      {expanded && <p>Trash</p>}
     </button>
   );
 }
