@@ -2,14 +2,14 @@ import React from "react";
 
 function Title() {
   return (
-    <div className="container heading-padding">
+    <div className="logo">
       <img
         width="60"
         height="60"
         src="https://img.icons8.com/carbon-copy/100/google-keep.png"
         alt="google-keep-logo"
       />
-      <h1 className="heading-title">Reminders</h1>
+      <h1>Reminders</h1>
     </div>
   );
 }
