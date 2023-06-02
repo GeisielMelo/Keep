@@ -1,6 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
-import { getNotes, getOneNote, createNote, destroyNote } from "../../services/api";
+import {
+  getNotes,
+  getOneNote,
+  createNote,
+  destroyNote,
+} from "../../services/api";
 import Title from "./components/heading/Title.jsx";
 import Search from "./components/heading/Search.jsx";
 import User from "./components/heading/User.jsx";
@@ -21,7 +26,7 @@ function MainPage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const loadData = async (query = "active") => {
-    if ((query === "") || (query === undefined)) {
+    if (query === "" || query === undefined) {
       query = "active";
     }
 
@@ -107,11 +112,20 @@ function MainPage() {
   ////////////////////////////////////////////////////////////////////////////
 
   if (loadingError) {
-    return <div className="loading">{errorMessage}</div>;
+    console.log(errorMessage)
+    return (
+      <div className="loading-spinner">
+        <div className="loading-spinner-animation"></div>
+      </div>
+    );
   }
 
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="loading-spinner">
+        <div className="loading-spinner-animation"></div>
+      </div>
+    );
   }
 
   ////////////////////////////////////////////////////////////////////////////
