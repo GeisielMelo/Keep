@@ -22,7 +22,6 @@ html {
 
 body {
   height: auto;
-  background-color: var(--first-color);
 }
 
 .fixed {
@@ -52,13 +51,16 @@ body {
   background-color: var(--first-color);
 }
 
-.heading-padding {
-  margin: 0px 10px;
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
-.heading-title {
-  padding-left: 15px;
-  font-size: 1.5em;
+.logo h1 {
+  font-size: 24px;
+  padding: 10px;
 }
 
 .search-bar {
@@ -69,7 +71,7 @@ body {
   border-bottom-left-radius: 7px;
   box-shadow: 0 1px 5px var(--shadow-color);
   background-color: var(--fourth-color);
-  width: 700px;
+  width: 550px;
   height: 50px;
 
   font-size: 1.2em;
@@ -207,16 +209,17 @@ body {
 
 .div-content {
   width: 100%;
+  height: 100%;
   margin-top: 64px;
-  margin-left: 80px;
-  background-color: var(--first-color);
+  margin-left: 160px;
+  margin-right: 80px;
 }
 
 .note {
   background: var(--fourth-color);
   border-radius: 7px;
   box-shadow: 0 2px 5px var(--shadow-color);
-  padding: 10px;
+  padding: 20px;
   width: 240px;
   margin: 16px;
   float: left;
@@ -239,7 +242,6 @@ body {
   float: right;
   margin-right: 10px;
   color: var(--first-color);
-  background-color: var(--third-color);
   border-radius: 7px;
   border: none;
   width: 36px;
@@ -355,6 +357,8 @@ form.create-note button:hover {
   width: 450px;
   border: 1px solid var(--text-color);
   border-radius: 7px;
+  background-color: var(--second-color);
+  margin: 20px;
 }
 
 .sign-box-in {
@@ -383,8 +387,6 @@ form.create-note button:hover {
   border-bottom: 1px solid red;
   display: inline-block;
 }
-
-
 
 .sign-btn {
   height: 40px;
@@ -437,7 +439,7 @@ form.create-note button:hover {
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(-360deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .image {
@@ -472,4 +474,119 @@ form.create-note button:hover {
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                             @Media - Phone                                 */
+/* ////////////////////////////////////////////////////////////////////////// */
+@media (max-width: 576px) {
+  .search-bar {
+    height: 50px;
+    width: 100%;
+  }
+
+  .logo h1 {
+    font-size: 0px;
+    margin-bottom: 0px;
+    color: inherit;
+  }
+
+  .div-content {
+    width: 100%;
+    height: 100%;
+    margin-left: 90px;
+    margin-right: 10px;
+    padding: 10px;
+  }
+
+  form.create-note {
+    width: 300px;
+  }
+
+  .note {
+    width: 90%;
+  }
+
+  .animated-btn {
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+  }
+  .animated-btn p {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .animated-btn:hover {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12.6px;
+    transition: height 0.2s ease;
+    height: 60px;
+    width: 50px;
+  }
+
+  .sign-box-out {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: 0px;
+    margin: 0px;
+  }
+  .sign-box-in {
+    width: 90%;
+  }
+}
+
+
+
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/*                             @Media - Tablet                                */
+/* ////////////////////////////////////////////////////////////////////////// */
+@media (min-width: 577px) and (max-width: 991px) {
+  .search-bar {
+    height: 50px;
+    width: 300px;
+  }
+
+  .logo h1 {
+    font-size: 0px;
+    margin-bottom: 0px;
+    color: inherit;
+  }
+
+  .div-content {
+    width: 100%;
+    height: 100%;
+    margin-left: 90px;
+    margin-right: 10px;
+    padding: 10px;
+  }
+
+  form.create-note {
+    width: 400px;
+  }
+
+  .note {
+    width: 210px;
+  }
+
+  .animated-btn {
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+  }
+  .animated-btn p {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .animated-btn:hover {
+    flex-direction: column;
+    align-items: center;
+    padding: 12.6px;
+    transition: height 0.2s ease;
+    height: 60px;
+    width: 50px;
+  }
 }
