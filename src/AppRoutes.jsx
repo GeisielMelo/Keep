@@ -1,50 +1,27 @@
-import React, { useContext } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { AuthProvider, AuthContext } from "./context/auth";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import LoginPage from "./pages/LoginPage";
-import MainPage from "./pages/MainPage";
+import Index from "./pages/Index"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Workbench from "./pages/Workbench"
+
+import Archived from "./pages/navigation/Archived"
+import Notes from "./pages/navigation/Notes"
 
 const AppRoutes = () => {
-  const Private = ({ children }) => {
-    const { authenticated, loading } = useContext(AuthContext);
-
-    if (loading) {
-      return <div className="loading">Loading...</div>;
-    }
-
-    if (!authenticated) {
-      return <Navigate to="/login" />;
-    }
-
-    return children;
-  };
-
-  const Public = ({ children }) => {
-    const { authenticated, loading } = useContext(AuthContext);
-
-    if (loading) {
-      return <div className="loading">Loading...</div>;
-    }
-
-    if (authenticated) {
-      return <Navigate to="/" />;
-    }
-
-    return children;
-  };
-
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route path="/login" element={<Public><LoginPage /></Public>} />
-          <Route path="/" element={<Private><MainPage /></Private>} />
-          <Route path="*" element={<Public><LoginPage /></Public>} />
-        </Routes>
-      </AuthProvider>
+      <Routes>
+        <Route path="/sign-in" element={<Login />} />
+        <Route path="/sign-up" element={<Register />} />
+        <Route path="/" element={<Index />} />
+        <Route path="*" element={<Login />} />
+
+        <Route path="/home" element={<Workbench><Notes /></Workbench>}/>
+        <Route path="/archived"element={<Workbench><Archived /></Workbench>}/>
+      </Routes>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 export default AppRoutes;
