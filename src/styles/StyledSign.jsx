@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Section = styled.section`
   display: flex;
@@ -7,7 +7,7 @@ export const Section = styled.section`
   width: 100%;
   height: 100vh;
   background-color: #060b10;
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -44,9 +44,10 @@ export const Container = styled.div`
     padding: 0 10px;
     border-radius: 5px;
     background-color: #12181f;
-    border: 1px solid #3e454e;
+    border: 1px solid;
+    border-color: #3e454e;
     color: #fff;
-    transition: 0.2s;
+    transition: 0.2s ease-in-out;
     &:focus {
       border-color: #fff;
     }
@@ -92,7 +93,7 @@ export const Container = styled.div`
       border-bottom: 1px solid #32e6e2;
     }
   }
-`;
+`
 
 export const Footer = styled.footer`
   width: 100%;
@@ -101,8 +102,8 @@ export const Footer = styled.footer`
   bottom: 0;
   text-align: center;
   color: #7e8183;
-  font-family: ${(props) => props.theme.font.family.two};
-  font-size: ${(props) => props.theme.font.size.sm};
+  font-family: ${(props) => props.theme.font.family.one};
+  font-size: ${(props) => props.theme.font.size.es};
   a {
     text-decoration: none;
     cursor: pointer;
@@ -111,4 +112,4 @@ export const Footer = styled.footer`
       color: #a1a7ab;
     }
   }
-`;
+`

@@ -58,7 +58,7 @@ const Workbench = ({ children }) => {
 
       <Container>
         <Menu data-isOpen={isOpen}>
-          <button onClick={() => handleButtonClick('/home')}>
+          <button onClick={() => handleButtonClick('/notes')}>
             {isTextVisible ? (
               <span>
                 <TipsAndUpdatesIcon />

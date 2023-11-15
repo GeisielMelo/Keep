@@ -1,27 +1,34 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Container, Section, Footer } from '../styles/StyledSign'
-import { AuthContext } from '../context/AuthContext'
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, Section, Footer } from '../styles/StyledSign';
+import { AuthContext } from '../context/AuthContext';
+import { GlobalMessage } from '../components/GlobalMessage';
 
 const Login = () => {
-  const navigate = useNavigate()
-  const { user, login } = useContext(AuthContext)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const navigate = useNavigate();
+  const { user, login } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (user) {
-      navigate('/')
+      navigate('/');
     }
-  }, [user])
+  }, [user]);
 
   const handleLogin = async () => {
-    try {
-      await login(email, password)
-    } catch (error) {
-      console.error(error)
+    if (!email || !password) {
+      setErrorMessage('Fill all fields.');
+      return;
     }
-  }
+
+    try {
+      await login(email, password);
+    } catch (error) {
+      setErrorMessage('Wrong password or email.');
+    }
+  };
 
   return (
     <Section>
@@ -42,8 +49,9 @@ const Login = () => {
           Ao entrar no aplicativo, você concorda com nossos <a href='#'>termos de serviço.</a>
         </p>
       </Footer>
+      {errorMessage && <GlobalMessage message={errorMessage} type={'error'} />}
     </Section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

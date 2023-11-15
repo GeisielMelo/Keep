@@ -16,12 +16,18 @@ const Register = () => {
   }, [user])
 
   const handleRegister = async () => {
+    if (!email || !password) {
+      alert('Preencha todos os campos')
+      return
+    }
+
     try {
       await register(email, password)
     } catch (error) {
-      console.error(error)
+      alert('Erro ao cadastrar usuário')
     }
   }
+
   return (
     <Section>
       <Container>

@@ -22,27 +22,19 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = async (email, password) => {
-    try {
-      const response = await signIn(email, password)
-      localStorage.setItem('user', JSON.stringify(response.data.user.id))
-      localStorage.setItem('token', response.data.token)
+    const response = await signIn(email, password)
+    localStorage.setItem('user', JSON.stringify(response.data.user.id))
+    localStorage.setItem('token', response.data.token)
 
-      api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`
+    api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`
 
-      setUser(response.data.user)
-      navigate('/')
-    } catch (error) {
-      console.error('Invalid email or password.')
-    }
+    setUser(response.data.user)
+    navigate('/')
   }
 
   const register = async (email, password) => {
-    try {
       await createUserData(email, password)
       await login(email, password)
-    } catch (error) {
-      console.error('Email already taken.')
-    }
   }
 
   const logout = async () => {
