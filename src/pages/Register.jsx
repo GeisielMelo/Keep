@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container, Section, Footer } from '../styles/StyledSign'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext';
+import { useAlert } from '../hook/useAlert';
 
 const Register = () => {
   const navigate = useNavigate()
+  const showAlert = useAlert();
   const { user, register } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -17,14 +19,14 @@ const Register = () => {
 
   const handleRegister = async () => {
     if (!email || !password) {
-      alert('Preencha todos os campos')
+      showAlert('Email or password not provided.', 'error')
       return
     }
 
     try {
       await register(email, password)
     } catch (error) {
-      alert('Erro ao cadastrar usuário')
+      showAlert('Email already taken.', 'error')
     }
   }
 

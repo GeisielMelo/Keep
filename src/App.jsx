@@ -1,15 +1,18 @@
-import { ThemeProvider } from "styled-components";
-import { theme } from "./styles/theme";
-import GlobalStyles from "./styles/GlobalStyles";
-import AppRoutes from "./AppRoutes";
+import { ThemeProvider } from 'styled-components'
+import { theme } from './styles/theme'
+import { AlertProvider } from './hook/useAlert'
+import GlobalStyles from './styles/GlobalStyles'
+import AppRoutes from './AppRoutes'
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <AppRoutes />
-    </ThemeProvider>
-  );
-};
+    <AlertProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <AppRoutes />
+      </ThemeProvider>
+    </AlertProvider>
+  )
+}
 
-export default App;
+export default App
