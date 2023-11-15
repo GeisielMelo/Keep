@@ -28,11 +28,11 @@ export const signOut = async () => {
 
 // Repository
 export const createRepository = async (id) => {
-  return api.post('/repositories/', { id })
+  return api.post('/repositories', { id })
 }
 
 export const fetchRepository = async (id) => {
-  return api.get('/repositories/', { id })
+  return api.get(`/repositories/${id}`)
 }
 
 export const updateRepository = async (id, notes, labels, archived) => {
