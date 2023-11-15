@@ -72,10 +72,10 @@ export const Menu = styled.div`
   padding: 10px;
   gap: 1px;
   border-right: 1px solid #ccc;
-  width: ${(props) => (props['data-isOpen'] ? '200px' : '60px')};
+  width: ${(props) => (props['data-open'] ? '200px' : '60px')};
   transition: width 0.4s ease;
   button {
-    width: ${(props) => (props['data-isOpen'] ? '100%' : '40px')};
+    width: ${(props) => (props['data-open'] ? '100%' : '40px')};
     transition: width 0.5s ease;
     height: 40px;
   }
@@ -83,7 +83,7 @@ export const Menu = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: ${(props) => (props['data-isOpen'] ? '0 10px' : '0 8px')};
+    padding: ${(props) => (props['data-open'] ? '0 10px' : '0 8px')};
     transition: padding 0.4s ease;
     height: 40px;
   }
