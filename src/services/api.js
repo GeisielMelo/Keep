@@ -25,3 +25,16 @@ export const signIn = async (email, password) => {
 export const signOut = async () => {
   return api.delete('/auth/sign-out')
 }
+
+// Repository
+export const createRepository = async (id) => {
+  return api.post('/repositories/', { id })
+}
+
+export const fetchRepository = async (id) => {
+  return api.get('/repositories/', { id })
+}
+
+export const updateRepository = async (id, notes, labels, archived) => {
+  return api.put('/repositories/', { id, notes, labels, archived })
+}
