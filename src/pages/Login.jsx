@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container, Section, Footer } from '../styles/StyledSign'
 import { AuthContext } from '../context/AuthContext'
-import { useAlert } from '../hook/useAlert'
+import { useAlert } from '../context/AlertContext'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -30,12 +30,30 @@ const Login = () => {
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin()
+    }
+  }
+
   return (
     <Section>
       <Container>
         <h1>Entrar</h1>
-        <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type='password' placeholder='Senha' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type='email'
+          placeholder='Email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <input
+          type='password'
+          placeholder='Senha'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
         <button onClick={() => handleLogin()}>Entrar</button>
         <p>
           Ainda não tem uma conta? <span onClick={() => navigate('/sign-up')}>Cadastre-se</span>

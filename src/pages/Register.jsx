@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container, Section, Footer } from '../styles/StyledSign'
-import { AuthContext } from '../context/AuthContext';
-import { useAlert } from '../hook/useAlert';
+import { AuthContext } from '../context/AuthContext'
+import { useAlert } from '../context/AlertContext'
 
 const Register = () => {
   const navigate = useNavigate()
-  const showAlert = useAlert();
+  const showAlert = useAlert()
   const { user, register } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,12 +30,30 @@ const Register = () => {
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleRegister()
+    }
+  }
+
   return (
     <Section>
       <Container>
         <h1>Cadastre-se com e-mail</h1>
-        <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type='password' placeholder='Senha' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type='email'
+          placeholder='Email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <input
+          type='password'
+          placeholder='Senha'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
         <button onClick={() => handleRegister()}>Cadastrar</button>
         <p>
           Já possui uma conta? <span onClick={() => navigate('/sign-in')}>Entrar</span>
