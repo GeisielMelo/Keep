@@ -9,7 +9,7 @@ const Index = () => {
   return (
     <div>
       <p>Index</p>
-      <button onClick={() => navigate('/notes')}>Notes</button>
+      <button onClick={() => navigate('/home')}>Notes</button>
       {user && <button onClick={() => logout()}>Logout</button>}
     </div>
   )
