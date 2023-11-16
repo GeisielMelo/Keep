@@ -1,9 +1,27 @@
-const Notes = () => {
-  return (
-    <div>
-      <p>Notes</p>
-    </div>
-  );
-};
+import { Note } from '../../components/Note'
+import styled from 'styled-components'
 
-export default Notes;
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: calc(100vh - 70px);
+  overflow: auto;
+`
+
+const Notes = ({ data }) => {
+  return (
+    <Container>
+      <Note />
+      <Note />
+      <Note />
+      <Note />
+      <Note />
+      <Note />
+      <Note />
+      <Note />
+    </Container>
+  )
+}
+
+export default Notes

@@ -1,23 +1,20 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates'
-import LabelIcon from '@mui/icons-material/Label'
-import ArchiveIcon from '@mui/icons-material/Archive'
+import { useState, useContext } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
-import CloudIcon from '@mui/icons-material/Cloud';
-import PersonIcon from '@mui/icons-material/Person';
+import CloudIcon from '@mui/icons-material/Cloud'
+import PersonIcon from '@mui/icons-material/Person'
 import { Nav, Section, Menu, Content, Container } from '../styles/StyledWorkbench'
+import { NotesButton, ArchiveButton, LabelsButton } from '../components/MenuButtons'
+import Notes from './navigation/Notes'
+import Archived from './navigation/Archived'
+import Labels from './navigation/Labels'
 
-const Workbench = ({ children }) => {
-  const navigate = useNavigate()
+
+const Workbench = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isTextVisible, setTextVisible] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
-
-  const handleButtonClick = (internalUrl) => {
-    navigate(internalUrl)
-  }
+  const [page, setPage] = useState('notes')
 
   const handleMenuOpen = () => {
     setIsDisabled(true)
@@ -31,6 +28,18 @@ const Workbench = ({ children }) => {
     }
 
     setTimeout(() => setIsDisabled(false), 500)
+  }
+
+  const handleRenderPage = () => {
+    if (page === 'notes') {
+      return <Notes />
+    }
+    if (page === 'labels') {
+      return <Labels />
+    }
+    if (page === 'archived') {
+      return <Archived />
+    }
   }
 
   return (
@@ -51,55 +60,23 @@ const Workbench = ({ children }) => {
         </div>
 
         <div className='right-container'>
-          <button><CloudIcon/></button>
-          <button><PersonIcon/></button>
+          <button>
+            <CloudIcon />
+          </button>
+          <button>
+            <PersonIcon />
+          </button>
         </div>
       </Nav>
 
       <Container>
-        <Menu data-isOpen={isOpen}>
-          <button onClick={() => handleButtonClick('/notes')}>
-            {isTextVisible ? (
-              <span>
-                <TipsAndUpdatesIcon />
-                <p>Notes</p>
-              </span>
-            ) : (
-              <span>
-                <TipsAndUpdatesIcon />
-                <p></p>
-              </span>
-            )}
-          </button>
-          <button>
-            {isTextVisible ? (
-              <span>
-                <LabelIcon />
-                <p>Labels</p>
-              </span>
-            ) : (
-              <span>
-                <LabelIcon />
-                <p></p>
-              </span>
-            )}
-          </button>
-          <button onClick={() => handleButtonClick('/archived')}>
-            {isTextVisible ? (
-              <span>
-                <ArchiveIcon />
-                <p>Archive</p>
-              </span>
-            ) : (
-              <span>
-                <ArchiveIcon />
-                <p></p>
-              </span>
-            )}
-          </button>
+        <Menu data-open={isOpen}>
+          <NotesButton isTextVisible={isTextVisible} onClick={() => setPage('notes')} />
+          <LabelsButton isTextVisible={isTextVisible} onClick={() => setPage('labels')} />
+          <ArchiveButton isTextVisible={isTextVisible} onClick={() => setPage('archived')} />
         </Menu>
 
-        <Content>{children}</Content>
+        <Content>{handleRenderPage()}</Content>
       </Container>
     </Section>
   )
