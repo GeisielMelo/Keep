@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { NotesProvider } from '../context/NotesContext'
 import { Nav, Section, Menu, Content, Container } from '../styles/StyledWorkbench'
-import { MenuButton } from '../components/MenuButtons'
+import { MenuButton } from '../components/MenuButton'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
