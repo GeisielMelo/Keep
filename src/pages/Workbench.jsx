@@ -1,20 +1,22 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { NotesProvider } from '../context/NotesContext'
+import { Nav, Section, Menu, Content, Container } from '../styles/StyledWorkbench'
+import { MenuButton } from '../components/MenuButtons'
+
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import CloudIcon from '@mui/icons-material/Cloud'
 import PersonIcon from '@mui/icons-material/Person'
-import { Nav, Section, Menu, Content, Container } from '../styles/StyledWorkbench'
-import { NotesButton, ArchiveButton, LabelsButton } from '../components/MenuButtons'
-import Notes from './navigation/Notes'
-import Archived from './navigation/Archived'
-import Labels from './navigation/Labels'
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates'
+import LabelIcon from '@mui/icons-material/Label'
+import UnarchiveIcon from '@mui/icons-material/Unarchive'
 
-
-const Workbench = () => {
+const Workbench = ({ children }) => {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const [isTextVisible, setTextVisible] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
-  const [page, setPage] = useState('notes')
 
   const handleMenuOpen = () => {
     setIsDisabled(true)
@@ -30,55 +32,59 @@ const Workbench = () => {
     setTimeout(() => setIsDisabled(false), 500)
   }
 
-  const handleRenderPage = () => {
-    if (page === 'notes') {
-      return <Notes />
-    }
-    if (page === 'labels') {
-      return <Labels />
-    }
-    if (page === 'archived') {
-      return <Archived />
-    }
-  }
-
   return (
-    <Section>
-      <Nav>
-        <div className='left-container'>
-          <button disabled={isDisabled} onClick={() => handleMenuOpen()}>
-            {isOpen ? <MenuOpenIcon /> : <MenuIcon />}
-          </button>
-          <div>
-            <img src='./svg/logo.svg' alt='' />
-            <h1>Reminders</h1>
+    <NotesProvider>
+      <Section>
+        <Nav>
+          <div className='left-container'>
+            <button disabled={isDisabled} onClick={() => handleMenuOpen()}>
+              {isOpen ? <MenuOpenIcon /> : <MenuIcon />}
+            </button>
+            <div>
+              <img src='./svg/logo.svg' alt='' />
+              <h1>Reminders</h1>
+            </div>
           </div>
-        </div>
 
-        <div className='middle-container'>
-          <input type='text' placeholder='Search' />
-        </div>
+          <div className='middle-container'>
+            <input type='text' placeholder='Search' />
+          </div>
 
-        <div className='right-container'>
-          <button>
-            <CloudIcon />
-          </button>
-          <button>
-            <PersonIcon />
-          </button>
-        </div>
-      </Nav>
+          <div className='right-container'>
+            <button>
+              <CloudIcon />
+            </button>
+            <button>
+              <PersonIcon />
+            </button>
+          </div>
+        </Nav>
 
-      <Container>
-        <Menu data-open={isOpen}>
-          <NotesButton isTextVisible={isTextVisible} onClick={() => setPage('notes')} />
-          <LabelsButton isTextVisible={isTextVisible} onClick={() => setPage('labels')} />
-          <ArchiveButton isTextVisible={isTextVisible} onClick={() => setPage('archived')} />
-        </Menu>
-
-        <Content>{handleRenderPage()}</Content>
-      </Container>
-    </Section>
+        <Container>
+          <Menu data-open={isOpen}>
+            <MenuButton
+              onClick={() => navigate('/home')}
+              isTextVisible={isTextVisible}
+              text={'Notes'}
+              icon={<TipsAndUpdatesIcon />}
+            />
+            <MenuButton
+              onClick={() => navigate('/labels')}
+              isTextVisible={isTextVisible}
+              text={'Labels'}
+              icon={<LabelIcon />}
+            />
+            <MenuButton
+              onClick={() => navigate('/archive')}
+              isTextVisible={isTextVisible}
+              text={'Archive'}
+              icon={<UnarchiveIcon />}
+            />
+          </Menu>
+          <Content>{children}</Content>
+        </Container>
+      </Section>
+    </NotesProvider>
   )
 }
 
