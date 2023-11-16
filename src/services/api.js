@@ -10,7 +10,7 @@ export const createUserData = async (email, password) => {
 }
 
 export const updateUserData = async (id, name, lastName, password) => {
-  return api.put('/users/', { id, name, lastName, password })
+  return api.patch('/users/', { id, name, lastName, password })
 }
 
 export const fetchUserData = async (id) => {
@@ -36,5 +36,5 @@ export const fetchRepository = async (id) => {
 }
 
 export const updateRepository = async (id, notes, labels) => {
-  return api.put('/repositories/', { id, notes, labels })
+  return api.patch('/repositories/', { id, notes, labels })
 }
