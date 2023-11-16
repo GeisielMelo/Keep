@@ -6,12 +6,12 @@ import AppRoutes from './AppRoutes'
 
 const App = () => {
   return (
-    <AlertProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <AlertProvider>
         <AppRoutes />
-      </ThemeProvider>
-    </AlertProvider>
+      </AlertProvider>
+    </ThemeProvider>
   )
 }
 
