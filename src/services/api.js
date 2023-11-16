@@ -35,6 +35,6 @@ export const fetchRepository = async (id) => {
   return api.get(`/repositories/${id}`)
 }
 
-export const updateRepository = async (id, notes, labels, archived) => {
-  return api.put('/repositories/', { id, notes, labels, archived })
+export const updateRepository = async (id, notes, labels) => {
+  return api.put('/repositories/', { id, notes, labels })
 }
