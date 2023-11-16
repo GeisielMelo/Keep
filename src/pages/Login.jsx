@@ -40,9 +40,6 @@ const Login = () => {
         <p>
           Ainda não tem uma conta? <span onClick={() => navigate('/sign-up')}>Cadastre-se</span>
         </p>
-        {/* <span onClick={() => navigate("/login/recuperar-senha")}>
-          <a>Esqueceu a senha?</a>
-        </span> */}
       </Container>
       <Footer>
         <p>
