@@ -26,7 +26,6 @@ export const NotesProvider = ({ children }) => {
           const response = await createRepository(JSON.parse(user))
           setData(response.data)
         } else {
-          console.error(error)
           console.error('Internal server error.')
         }
       }
@@ -85,12 +84,40 @@ export const NotesProvider = ({ children }) => {
     setLabels((prevLabels) => prevLabels.filter((l) => l !== label))
   }
 
+  const addNote = (title, description, labels = [], archived = false) => {
+    setNotes((prevNotes) => [...prevNotes, { title, description, labels, archived }])
+  }
+
+  const removeNote = (index) => {
+    setNotes((prevNotes) => prevNotes.filter((note, i) => i !== index))
+  }
+
+  const updateNote = (index, title, description, labels, archived = false) => {
+    setNotes((prevNotes) => {
+      return prevNotes.map((note, i) => {
+        if (i === index) {
+          return {
+            title: title,
+            description: description,
+            labels: labels,
+            archived: archived,
+          }
+        } else {
+          return note
+        }
+      })
+    })
+  }
+
   const contextData = {
     notes,
     labels,
     addLabel,
     removeLabel,
     refreshData,
+    addNote,
+    removeNote,
+    updateNote,
   }
 
   return <NotesContext.Provider value={contextData}>{children}</NotesContext.Provider>
