@@ -1,71 +1,83 @@
-import React, { useState } from 'react'
-import SaveIcon from '@mui/icons-material/Save'
+import React, { useState, useContext, useEffect } from 'react'
+import { NotesContext } from '../context/NotesContext'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import EditIcon from '@mui/icons-material/Edit'
 import LabelIcon from '@mui/icons-material/Label'
 import ArchiveIcon from '@mui/icons-material/Archive'
 import { Container } from '../styles/StyledNote'
+import { useDivFocus } from '../hook/useDivFocus'
 
-export const Note = () => {
-  const [editorMode, setEditorMode] = useState(false)
+export const Note = ({ index, title, description, labels }) => {
+  const { updateNote, removeNote } = useContext(NotesContext)
+  const { isFocused, focus } = useDivFocus()
+  const [titleValue, setTitleValue] = useState(title)
+  const [descriptionValue, setDescriptionValue] = useState(description)
+
+  useEffect(() => {
+    const handleCloseEditor = async () => {
+      await updateNote(index, titleValue, descriptionValue, labels, false)
+    }
+
+    if (
+      (!isFocused && titleValue !== title) ||
+      (!isFocused && descriptionValue !== description)
+    ) {
+      handleCloseEditor()
+    }
+  }, [isFocused])
+
+  const handleArchiveNote = async () => {
+    await updateNote(index, titleValue, descriptionValue, labels, true)
+  }
+
+  const handleDeleteNote = async () => {
+    await removeNote(index)
+  }
 
   return (
-    <Container>
-      {editorMode ? (
+    <Container id={index} ref={focus}>
+      {isFocused ? (
         <>
-          <input type='text' placeholder='Teste' />
-          <textarea name='' id='' cols='30' rows='10'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum omnis quaerat voluptate, culpa iste sed totam
-            labore quas asperiores nobis vitae est magnam vel dolorum modi nesciunt natus cumque. Nemo!
-          </textarea>
+          <textarea
+            className='textarea-title'
+            value={titleValue}
+            onChange={(e) => setTitleValue(e.target.value)}
+          />
+          <textarea
+            className='textarea-description'
+            value={descriptionValue}
+            onChange={(e) => setDescriptionValue(e.target.value)}
+          />
+
           <ul>
-            <li>Label</li>
-            <li>Label</li>
-            <li>Label</li>
-            <li>Label</li>
+            {labels.map((label, index) => (
+              <li key={index}>{label}</li>
+            ))}
           </ul>
+
           <div className='buttons'>
-            <button disabled={true}>
+            <button onClick={() => handleDeleteNote(index)}>
               <DeleteForeverIcon style={{ fontSize: '18px' }} />
             </button>
-            <button disabled={true}>
+            <button>
               <LabelIcon style={{ fontSize: '18px' }} />
             </button>
-            <button disabled={true}>
+            <button onClick={() => handleArchiveNote()}>
               <ArchiveIcon style={{ fontSize: '18px' }} />
-            </button>
-            <button>
-              <SaveIcon style={{ fontSize: '18px' }} />
             </button>
           </div>
         </>
       ) : (
         <>
-          <h1>Teste</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum omnis quaerat voluptate, culpa iste sed totam
-            labore quas asperiores nobis vitae est magnam vel dolorum modi nesciunt natus cumque. Nemo!
-          </p>
+          <h1>
+            {title} {index}
+          </h1>
+          <p>{description}</p>
+
           <ul>
-            <li>Label</li>
-            <li>Label</li>
-            <li>Label</li>
-            <li>Label</li>
+            {labels.map((label, index) => (
+              <li key={index}>{label}</li>
+            ))}
           </ul>
-          <div className='buttons'>
-            <button disabled={false}>
-              <DeleteForeverIcon style={{ fontSize: '18px' }} />
-            </button>
-            <button disabled={false}>
-              <LabelIcon style={{ fontSize: '18px' }} />
-            </button>
-            <button disabled={false}>
-              <ArchiveIcon style={{ fontSize: '18px' }} />
-            </button>
-            <button disabled={false}>
-              <EditIcon style={{ fontSize: '18px' }} />
-            </button>
-          </div>
         </>
       )}
     </Container>
