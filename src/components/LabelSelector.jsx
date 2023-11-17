@@ -1,15 +1,6 @@
 import React, { useContext } from 'react'
 import { NotesContext } from '../context/NotesContext'
-import styled from 'styled-components'
-
-const List = styled.ul`
-  .selected {
-    color: green;
-  }
-  .unselected {
-    color: red;
-  }
-`
+import { List } from '../styles/StyledLabelSelector'
 
 export const LabelSelector = ({ selectedLabels, setSelectedLabels }) => {
   const { labels } = useContext(NotesContext)

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { NotesContext } from '../context/NotesContext'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import UnarchiveIcon from '@mui/icons-material/Unarchive'
-import { Container } from '../styles/StyledNote'
+import { Container } from '../styles/StyledAchive'
 
 export const Archive = ({ id, title, description, labels }) => {
   const { updateNote, removeNote } = useContext(NotesContext)

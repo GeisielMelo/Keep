@@ -1,16 +1,7 @@
 import React, { useContext } from 'react'
 import { NotesContext } from '../../context/NotesContext'
 import { Archive } from '../../components/Archive'
-
-import styled from 'styled-components'
-
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-height: calc(100vh - 70px);
-  overflow: auto;
-`
+import { Container } from '../../styles/StyledArchived'
 
 const Archived = () => {
   const { notes } = useContext(NotesContext)

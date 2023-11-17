@@ -2,32 +2,7 @@ import React, { useState, useContext } from 'react'
 import { NotesContext } from '../../context/NotesContext'
 import { useAlert } from '../../context/AlertContext'
 import { Note } from '../../components/Note'
-
-import styled from 'styled-components'
-
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-height: calc(100vh - 70px);
-  overflow: auto;
-`
-
-const NewNoteContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 500px;
-    width: 100%;
-  }
-  input {
-    border: 1px solid black;
-  }
-`
+import { Container, NewNoteContainer } from '../../styles/StyledNotes'
 
 const Notes = () => {
   const { editorMode, notes, addNote } = useContext(NotesContext)
@@ -37,17 +12,17 @@ const Notes = () => {
 
   const handleAddNote = () => {
     if (/(\S)\1{2,}/.test(noteTitle)) {
-      return showAlert('Invalid note title type (repeated characters).');
+      return showAlert('Invalid note title type (repeated characters).')
     }
-  
+
     if (/(\S)\1{2,}/.test(noteDescription)) {
-      return showAlert('Invalid note description type (repeated characters).');
+      return showAlert('Invalid note description type (repeated characters).')
     }
-  
-    addNote(noteTitle, noteDescription);
-    setNoteTitle('');
-    setNoteDescription('');
-  };
+
+    addNote(noteTitle, noteDescription)
+    setNoteTitle('')
+    setNoteDescription('')
+  }
 
   return (
     <Container>

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { NotesContext } from '../context/NotesContext'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import LabelIcon from '@mui/icons-material/Label'
 import ArchiveIcon from '@mui/icons-material/Archive'
 import { Container } from '../styles/StyledNote'
 import { useDivFocus } from '../hook/useDivFocus'
@@ -59,9 +58,6 @@ export const Note = ({ index, title, description, labels }) => {
           <div className='buttons'>
             <button onClick={() => handleDeleteNote(index)}>
               <DeleteForeverIcon style={{ fontSize: '18px' }} />
-            </button>
-            <button>
-              <LabelIcon style={{ fontSize: '18px' }} />
             </button>
             <button onClick={() => handleArchiveNote()}>
               <ArchiveIcon style={{ fontSize: '18px' }} />
