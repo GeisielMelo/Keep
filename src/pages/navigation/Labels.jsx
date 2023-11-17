@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
-import AddIcon from '@mui/icons-material/Add'
-import ClearIcon from '@mui/icons-material/Clear'
 import { NotesContext } from '../../context/NotesContext'
 import { useAlert } from '../../context/AlertContext'
 import { Container, LabelContainer, Input } from '../../styles/StyledLabels'
+import AddIcon from '@mui/icons-material/Add'
+import ClearIcon from '@mui/icons-material/Clear'
 
 const Labels = () => {
   const { labels, addLabel, removeLabel } = useContext(NotesContext)
