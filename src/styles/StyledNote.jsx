@@ -14,6 +14,7 @@ export const Container = styled.div`
     max-width: 100%;
     margin-right: 5px;
   }
+
   h1 {
     font-size: 16px;
   }
@@ -26,6 +27,7 @@ export const Container = styled.div`
     list-style: none;
     align-items: center;
     gap: 5px;
+    margin-bottom: 60px;
   }
   li {
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -33,11 +35,14 @@ export const Container = styled.div`
     border-radius: 5px;
     font-size: 12px;
   }
+
   .buttons {
+    position: absolute;
+    bottom: 20px;
     display: flex;
+    width: calc(100% - 40px);
     gap: 5px;
     justify-content: flex-end;
-    margin-top: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px;
     border-radius: 5px;
@@ -52,5 +57,12 @@ export const Container = styled.div`
       border-radius: 5px;
       border: 1px solid rgba(0, 0, 0, 0.2);
     }
+  }
+
+  .textarea-title {
+    font-size: 16px;
+  }
+  .textarea-description {
+    margin: 10px 0;
   }
 `
