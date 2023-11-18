@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { NotesContext } from '../context/NotesContext'
 import { useNavigate } from 'react-router-dom'
 import { Nav, Section, Menu, Content, Container } from '../styles/StyledWorkbench'
 import { MenuButton } from '../components/MenuButton'
+import { Profile } from '../components/Profile'
+import { Sync } from '../components/animated/Sync'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
-import CloudIcon from '@mui/icons-material/Cloud'
-import PersonIcon from '@mui/icons-material/Person'
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates'
 import LabelIcon from '@mui/icons-material/Label'
 import UnarchiveIcon from '@mui/icons-material/Unarchive'
 
 const Workbench = ({ children }) => {
   const navigate = useNavigate()
+  const { syncing } = useContext(NotesContext)
   const [isOpen, setIsOpen] = useState(false)
   const [isTextVisible, setTextVisible] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
@@ -53,12 +55,8 @@ const Workbench = ({ children }) => {
         </div>
 
         <div className='right-container'>
-          <button>
-            <CloudIcon />
-          </button>
-          <button>
-            <PersonIcon />
-          </button>
+          <Sync play={syncing} />
+          <Profile />
         </div>
       </Nav>
 

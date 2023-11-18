@@ -8,6 +8,7 @@ export const NotesProvider = ({ children }) => {
   const [data, setData] = useState(null)
   const [labels, setLabels] = useState([])
   const [notes, setNotes] = useState([])
+  const [syncing, setSyncing] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +18,7 @@ export const NotesProvider = ({ children }) => {
       }
 
       try {
+        setSyncing(true)
         const response = await fetchRepository(JSON.parse(user))
         setData(response.data)
         setNotes(response.data.notes)
@@ -28,11 +30,14 @@ export const NotesProvider = ({ children }) => {
         } else {
           console.error('Internal server error.')
         }
+      } finally {
+        setSyncing(false)
       }
     }
 
     const syncData = async () => {
       try {
+        setSyncing(true)
         if (!lodash.isEqual(notes, data.notes) || !lodash.isEqual(labels, data.labels)) {
           const user = localStorage.getItem('user')
           if (!user) {
@@ -43,6 +48,8 @@ export const NotesProvider = ({ children }) => {
         }
       } catch (error) {
         console.error(error)
+      } finally {
+        setSyncing(false)
       }
     }
 
@@ -54,27 +61,6 @@ export const NotesProvider = ({ children }) => {
       syncData()
     }
   }, [data, notes, labels])
-
-  const refreshData = async () => {
-    const user = localStorage.getItem('user')
-    if (!user) {
-      return
-    }
-
-    try {
-      const response = await fetchRepository(JSON.parse(user))
-      setData(response.data)
-      setNotes(response.data.notes)
-      setLabels(response.data.labels)
-    } catch (error) {
-      if (error.response.status === 404) {
-        const response = await createRepository(JSON.parse(user))
-        setData(response.data)
-      } else {
-        console.error('Internal server error.')
-      }
-    }
-  }
 
   const addLabel = (label) => {
     setLabels((prevLabels) => [...prevLabels, label])
@@ -112,9 +98,9 @@ export const NotesProvider = ({ children }) => {
   const contextData = {
     notes,
     labels,
+    syncing,
     addLabel,
     removeLabel,
-    refreshData,
     addNote,
     removeNote,
     updateNote,
