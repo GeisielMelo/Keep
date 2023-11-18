@@ -54,10 +54,10 @@ export const Nav = styled.nav`
     margin: 0px 10px;
     gap: 10px;
     button {
-      width: 40px;
-      height: 40px;
-      border-radius: 50px;
-    }
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+  }
   }
 `
 

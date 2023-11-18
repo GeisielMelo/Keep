@@ -1,24 +1,24 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react'
 
 export const useDivFocus = () => {
-  const focus = useRef();
-  const [isFocused, setIsFocused] = useState(false);
-  
+  const focus = useRef()
+  const [isFocused, setIsFocused] = useState(false)
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (focus.current && !focus.current.contains(e.target)) {
-        setIsFocused(false);
+        setIsFocused(false)
       } else {
-        setIsFocused(true);
+        setIsFocused(true)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
-  return { isFocused, focus };
-};
+  return { setIsFocused, isFocused, focus }
+}
