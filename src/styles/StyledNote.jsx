@@ -15,19 +15,12 @@ export const Container = styled.div`
     margin-right: 5px;
   }
 
-  h1 {
-    font-size: 16px;
-  }
-  p {
-    margin: 10px 0;
-  }
   ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     align-items: center;
     gap: 5px;
-    margin-bottom: 60px;
   }
   li {
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -35,12 +28,35 @@ export const Container = styled.div`
     border-radius: 5px;
     font-size: 12px;
   }
+`
 
+export const EditMode = styled.div`
+  display: flex;
+  flex-direction: column;
+  &:hover{
+    cursor: text;
+  }
+
+  h1 {
+    font-size: 16px;
+  }
+  p {
+    margin: 10px 0;
+  }
+  .textarea-title {
+    font-size: 16px;
+  }
+  .textarea-description {
+    margin: 10px 0;
+  }
+`
+export const NormalMode = styled.div`
+  ul {
+    margin: 10px 0;
+  }
   .buttons {
-    position: absolute;
-    bottom: 20px;
     display: flex;
-    width: calc(100% - 40px);
+    width: 100%;
     gap: 5px;
     justify-content: flex-end;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -57,12 +73,5 @@ export const Container = styled.div`
       border-radius: 5px;
       border: 1px solid rgba(0, 0, 0, 0.2);
     }
-  }
-
-  .textarea-title {
-    font-size: 16px;
-  }
-  .textarea-description {
-    margin: 10px 0;
   }
 `

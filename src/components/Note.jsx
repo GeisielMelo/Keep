@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import { NotesContext } from '../context/NotesContext'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import ArchiveIcon from '@mui/icons-material/Archive'
-import { Container } from '../styles/StyledNote'
+import { EditMode, Container, NormalMode } from '../styles/StyledNote'
 import { useDivFocus } from '../hook/useDivFocus'
 import { LabelSelector } from './LabelSelector'
 
 export const Note = ({ index, title, description, labels, archivable }) => {
-  const { updateNote, removeNote } = useContext(NotesContext)
+  const { updateNote, removeNote, setSearch } = useContext(NotesContext)
   const { isFocused, focus } = useDivFocus()
   const [selectedLabels, setSelectedLabels] = useState(labels)
   const [titleValue, setTitleValue] = useState(title)
@@ -36,43 +36,51 @@ export const Note = ({ index, title, description, labels, archivable }) => {
   }
 
   return (
-    <Container id={index} ref={focus}>
-      {isFocused ? (
-        <>
-          <textarea className='textarea-title' value={titleValue} onChange={(e) => setTitleValue(e.target.value)} />
-          <textarea
-            className='textarea-description'
-            value={descriptionValue}
-            onChange={(e) => setDescriptionValue(e.target.value)}
-          />
+    <Container>
+      <EditMode id={index} ref={focus}>
+        {isFocused ? (
+          <>
+            <textarea className='textarea-title' value={titleValue} onChange={(e) => setTitleValue(e.target.value)} />
+            <textarea
+              className='textarea-description'
+              value={descriptionValue}
+              onChange={(e) => setDescriptionValue(e.target.value)}
+            />
 
-          <LabelSelector selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
+            <LabelSelector selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
+          </>
+        ) : (
+          <>
+            <h1>{title}</h1>
+            <p>{description}</p>
+          </>
+        )}
+      </EditMode>
 
-          <div className='buttons'>
-            <button onClick={() => handleDeleteNote(index)}>
-              <DeleteForeverIcon style={{ fontSize: '18px' }} />
-            </button>
-            {archivable && (
-              <button onClick={() => handleArchiveNote()}>
-                <ArchiveIcon style={{ fontSize: '18px' }} />
+      <NormalMode>
+        {!isFocused && (
+          <>
+            <ul>
+              {labels.map((label, index) => (
+                <li key={index} onClick={() => setSearch(label)}>
+                  {label}
+                </li>
+              ))}
+            </ul>
+
+            <div className='buttons'>
+              <button onClick={() => handleDeleteNote(index)}>
+                <DeleteForeverIcon style={{ fontSize: '18px' }} />
               </button>
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <h1>
-            {title} {index}
-          </h1>
-          <p>{description}</p>
-
-          <ul>
-            {labels.map((label, index) => (
-              <li key={index}>{label}</li>
-            ))}
-          </ul>
-        </>
-      )}
+              {archivable && (
+                <button onClick={() => handleArchiveNote()}>
+                  <ArchiveIcon style={{ fontSize: '18px' }} />
+                </button>
+              )}
+            </div>
+          </>
+        )}
+      </NormalMode>
     </Container>
   )
 }
