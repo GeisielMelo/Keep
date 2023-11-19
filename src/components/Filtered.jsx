@@ -9,11 +9,15 @@ export const Filtered = () => {
   return (
     <Container>
       {notes.map((note, index) => {
-        const { title, description } = note
+        const { title, description, labels } = note
         const searchValue = search.toLowerCase()
 
         // Render a card if match.
-        if (title.toLowerCase().includes(searchValue) || description.toLowerCase().includes(searchValue)) {
+        if (
+          title.toLowerCase().includes(searchValue) ||
+          description.toLowerCase().includes(searchValue) ||
+          labels.some((item) => item.toLowerCase().includes(search))
+        ) {
           return (
             <Note
               key={index}
