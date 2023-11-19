@@ -5,7 +5,7 @@ import UnarchiveIcon from '@mui/icons-material/Unarchive'
 import { Container } from '../styles/StyledAchive'
 
 export const Archive = ({ id, title, description, labels }) => {
-  const { updateNote, removeNote } = useContext(NotesContext)
+  const { updateNote, removeNote, setSearch } = useContext(NotesContext)
 
   const handleUnArchiveNote = async () => {
     await updateNote(id, title, description, labels, false)
@@ -13,13 +13,13 @@ export const Archive = ({ id, title, description, labels }) => {
 
   return (
     <Container id={id}>
-      <h1>
-        {title} {id}
-      </h1>
+      <h1>{title}</h1>
       <p>{description}</p>
       <ul>
         {labels.map((label, index) => (
-          <li key={index}>{label}</li>
+          <li key={index} onClick={() => setSearch(label)}>
+            {label}
+          </li>
         ))}
       </ul>
 
