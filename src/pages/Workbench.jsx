@@ -5,6 +5,7 @@ import { Nav, Section, Menu, Content, Container } from '../styles/StyledWorkbenc
 import { MenuButton } from '../components/MenuButton'
 import { Profile } from '../components/Profile'
 import { Sync } from '../components/animated/Sync'
+import { Filtered } from '../components/Filtered'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
@@ -14,7 +15,7 @@ import UnarchiveIcon from '@mui/icons-material/Unarchive'
 
 const Workbench = ({ children }) => {
   const navigate = useNavigate()
-  const { syncing } = useContext(NotesContext)
+  const { syncing, search, setSearch } = useContext(NotesContext)
   const [isOpen, setIsOpen] = useState(false)
   const [isTextVisible, setTextVisible] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
@@ -34,6 +35,9 @@ const Workbench = ({ children }) => {
   }
 
   const handleButtonClick = (page) => {
+    if (search) {
+      setSearch('')
+    }
     navigate(page)
   }
 
@@ -51,7 +55,7 @@ const Workbench = ({ children }) => {
         </div>
 
         <div className='middle-container'>
-          <input type='text' placeholder='Search' />
+          <input type='text' placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
 
         <div className='right-container'>
@@ -81,7 +85,7 @@ const Workbench = ({ children }) => {
             icon={<UnarchiveIcon />}
           />
         </Menu>
-        <Content>{children}</Content>
+        <Content>{search ? <Filtered /> : children}</Content>
       </Container>
     </Section>
   )

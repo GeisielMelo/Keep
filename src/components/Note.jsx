@@ -6,7 +6,7 @@ import { Container } from '../styles/StyledNote'
 import { useDivFocus } from '../hook/useDivFocus'
 import { LabelSelector } from './LabelSelector'
 
-export const Note = ({ index, title, description, labels }) => {
+export const Note = ({ index, title, description, labels, archivable }) => {
   const { updateNote, removeNote } = useContext(NotesContext)
   const { isFocused, focus } = useDivFocus()
   const [selectedLabels, setSelectedLabels] = useState(labels)
@@ -39,29 +39,24 @@ export const Note = ({ index, title, description, labels }) => {
     <Container id={index} ref={focus}>
       {isFocused ? (
         <>
-          <textarea
-            className='textarea-title'
-            value={titleValue}
-            onChange={(e) => setTitleValue(e.target.value)}
-          />
+          <textarea className='textarea-title' value={titleValue} onChange={(e) => setTitleValue(e.target.value)} />
           <textarea
             className='textarea-description'
             value={descriptionValue}
             onChange={(e) => setDescriptionValue(e.target.value)}
           />
 
-          <LabelSelector
-            selectedLabels={selectedLabels}
-            setSelectedLabels={setSelectedLabels}
-          />
+          <LabelSelector selectedLabels={selectedLabels} setSelectedLabels={setSelectedLabels} />
 
           <div className='buttons'>
             <button onClick={() => handleDeleteNote(index)}>
               <DeleteForeverIcon style={{ fontSize: '18px' }} />
             </button>
-            <button onClick={() => handleArchiveNote()}>
-              <ArchiveIcon style={{ fontSize: '18px' }} />
-            </button>
+            {archivable && (
+              <button onClick={() => handleArchiveNote()}>
+                <ArchiveIcon style={{ fontSize: '18px' }} />
+              </button>
+            )}
           </div>
         </>
       ) : (

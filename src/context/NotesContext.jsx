@@ -9,6 +9,7 @@ export const NotesProvider = ({ children }) => {
   const [labels, setLabels] = useState([])
   const [notes, setNotes] = useState([])
   const [syncing, setSyncing] = useState(false)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,12 +99,14 @@ export const NotesProvider = ({ children }) => {
   const contextData = {
     notes,
     labels,
+    search,
     syncing,
     addLabel,
     removeLabel,
     addNote,
     removeNote,
     updateNote,
+    setSearch,
   }
 
   return <NotesContext.Provider value={contextData}>{children}</NotesContext.Provider>

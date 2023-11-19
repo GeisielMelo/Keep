@@ -54,7 +54,7 @@ const Notes = () => {
               description={note.description}
               labels={note.labels}
               archived={note.archived}
-              archiveMode={false}
+              archivable={true}
             />
           ),
       )}
