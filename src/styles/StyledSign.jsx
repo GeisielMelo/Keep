@@ -32,7 +32,6 @@ export const Container = styled.div`
     width: calc(100% - 25px);
   }
   h1 {
-    font-family: ${(props) => props.theme.font.family.one};
     font-size: ${(props) => props.theme.font.size.md};
     font-weight: ${(props) => props.theme.font.weight.bold};
     color: #fff;
@@ -63,7 +62,6 @@ export const Container = styled.div`
     background-color: #32e6e2;
     cursor: pointer;
     transition: 0.2s;
-    font-family: ${(props) => props.theme.font.family.one};
     font-size: ${(props) => props.theme.font.size.sm};
     font-weight: ${(props) => props.theme.font.weight.bold};
     color: #12181f;
@@ -75,7 +73,6 @@ export const Container = styled.div`
     color: #32e6e2;
     cursor: pointer;
     text-decoration: none;
-    font-family: ${(props) => props.theme.font.family.one};
     font-size: ${(props) => props.theme.font.size.es};
     font-weight: ${(props) => props.theme.font.weight.bold};
     border-bottom: 1px solid #32e6e2;
@@ -84,7 +81,6 @@ export const Container = styled.div`
   p {
     color: #fff;
     text-decoration: none;
-    font-family: ${(props) => props.theme.font.family.one};
     font-size: ${(props) => props.theme.font.size.es};
     font-weight: ${(props) => props.theme.font.weight.bold};
     span {
@@ -102,7 +98,6 @@ export const Footer = styled.footer`
   bottom: 0;
   text-align: center;
   color: #7e8183;
-  font-family: ${(props) => props.theme.font.family.one};
   font-size: ${(props) => props.theme.font.size.es};
   a {
     text-decoration: none;
