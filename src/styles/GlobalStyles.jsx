@@ -11,7 +11,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body  {
-    background-color: #ffffff;
+    font-family: ${(props) => props.theme.font.family.one};
+    background-color: ${(props) => props.theme.color.one}; 
 }
 
 button {
@@ -27,12 +28,13 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-    background: #fff;
+    background: ${(props) => props.theme.color.two}; 
+    border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #393E46, #222831);
-    border-radius: 4px;
+    background: ${(props) => props.theme.color.four};
+    border-radius: 9999px;
 } 
 `
 
