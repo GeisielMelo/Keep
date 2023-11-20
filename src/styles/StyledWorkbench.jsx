@@ -96,10 +96,14 @@ export const Menu = styled.div`
   width: ${(props) => (props['data-open'] ? '200px' : '60px')};
   transition: width 0.4s ease;
   button {
+    font-family: ${(props) => props.theme.font.family.one};
     width: ${(props) => (props['data-open'] ? '100%' : '40px')};
     transition: width 0.5s ease;
     height: 40px;
     border-radius: 9999px;
+    background: ${(props) => props.theme.color.five};
+    color: ${(props) => props.theme.color.two};
+    margin-bottom: 5px;
   }
   span {
     display: flex;
