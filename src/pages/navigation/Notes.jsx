@@ -3,6 +3,7 @@ import { NotesContext } from '../../context/NotesContext'
 import { useAlert } from '../../context/AlertContext'
 import { Note } from '../../components/Note'
 import { Container, NewNoteContainer } from '../../styles/StyledNotes'
+import AddIcon from '@mui/icons-material/Add';
 
 const Notes = () => {
   const { editorMode, notes, addNote } = useContext(NotesContext)
@@ -24,22 +25,31 @@ const Notes = () => {
     setNoteDescription('')
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleAddNote()
+    }
+  }
+
   return (
     <Container>
       <NewNoteContainer>
         <div>
-          <input
-            type='text'
+          <input 
             value={noteTitle}
             onChange={(e) => setNoteTitle(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
-          <input
-            type='text'
+          <textarea
             value={noteDescription}
             onChange={(e) => setNoteDescription(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
-          <button disabled={editorMode} onClick={() => handleAddNote()}>
-            New Note
+          <button
+            disabled={editorMode}
+            onClick={() => handleAddNote()}
+          >
+            <AddIcon/>
           </button>
         </div>
       </NewNoteContainer>
