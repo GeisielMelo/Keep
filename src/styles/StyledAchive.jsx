@@ -4,11 +4,16 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 10px 20px;
+
   max-width: 240px;
-  width: 100%;
-  padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  /* max-height: 300px; */
+
+  height: min-content;
+
+  border: 1px solid;
+  border-color: ${(props) => props.theme.color.four};
+  border-radius: 8px;
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
@@ -16,53 +21,71 @@ export const Container = styled.div`
   }
 
   h1 {
-    font-size: 16px;
+    font-size: ${(props) => props.theme.font.size.es};
+    color: ${(props) => props.theme.color.two};
+    font-weight: 500;
+    word-wrap: break-word;
+    max-height: 60px;
+    overflow: hidden;
   }
+
   p {
-    margin: 10px 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: ${(props) => props.theme.color.two};
+    font-size: ${(props) => props.theme.font.size.sm};
+    word-wrap: break-word;
+    max-height: 180px;
+    overflow-y: auto;
   }
   ul {
     display: flex;
     flex-wrap: wrap;
-    list-style: none;
     align-items: center;
     gap: 5px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
   li {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 2px 6px;
-    border-radius: 5px;
-    font-size: 12px;
-  }
+    padding: 2px 10px;
+    border: 1px solid;
+    border-radius: 9999px;
+    border-color: ${(props) => props.theme.color.four};
 
+    list-style: none;
+    color: ${(props) => props.theme.color.two};
+    font-size: 12px;
+
+    transition: background 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      background: ${(props) => props.theme.color.transparent};
+    }
+  }
   .buttons {
     position: absolute;
-    bottom: 20px;
+    bottom: 5px;
+    right: 5px;
+    gap: 5px;
+
     display: flex;
     width: calc(100% - 40px);
-    gap: 5px;
     justify-content: flex-end;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px;
-    border-radius: 5px;
+
     button {
       display: flex;
       align-items: center;
       justify-content: center;
       border: none;
-      background-color: transparent;
       width: 28px;
       height: 28px;
-      border-radius: 5px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      background: none;
+      color: ${(props) => props.theme.color.four};
+      transition: background 0.2s ease;
+      &:hover {
+        background: ${(props) => props.theme.color.transparent};
+      }
     }
-  }
-
-  .textarea-title {
-    font-size: 16px;
-  }
-  .textarea-description {
-    margin: 10px 0;
   }
 `

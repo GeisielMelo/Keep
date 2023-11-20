@@ -4,74 +4,136 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 10px 20px;
+
   max-width: 240px;
   width: 100%;
-  padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  height: min-content;
 
+  border: 1px solid;
+  border-color: ${(props) => props.theme.color.four};
+  border-radius: 8px;
+  
   @media screen and (max-width: 768px) {
     max-width: 100%;
     margin-right: 5px;
   }
 
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    align-items: center;
-    gap: 5px;
+  h1 {
+    font-size: ${(props) => props.theme.font.size.es};
+    color: ${(props) => props.theme.color.two};
+    font-weight: 500;
+    word-wrap: break-word;
+    max-height: 60px;
+    overflow: hidden;
   }
-  li {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 2px 6px;
-    border-radius: 5px;
-    font-size: 12px;
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: ${(props) => props.theme.color.two};
+    font-size: ${(props) => props.theme.font.size.sm};
+    word-wrap: break-word;
+    max-height: 180px;
+    overflow-y: auto;
   }
 `
 
 export const EditMode = styled.div`
   display: flex;
   flex-direction: column;
-  &:hover{
-    cursor: text;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 40px;
+  }
+  li {
+    padding: 2px 10px;
+    border: 1px solid;
+    border-radius: 9999px;
+    border-color: ${(props) => props.theme.color.four};
+
+    list-style: none;
+    color: ${(props) => props.theme.color.two};
+    font-size: 12px;
+
+    transition: background 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      background: ${(props) => props.theme.color.transparent};
+    }
   }
 
-  h1 {
-    font-size: 16px;
-  }
-  p {
-    margin: 10px 0;
-  }
   .textarea-title {
-    font-size: 16px;
+    height: 50px;
+    font-size: ${(props) => props.theme.font.size.es};
+    color: ${(props) => props.theme.color.two};
+    font-weight: 500;
+    background: none;
+    resize: none;
   }
   .textarea-description {
+    height: 140px;
+    font-size: ${(props) => props.theme.font.size.sm};
+    color: ${(props) => props.theme.color.two};
+    background: none;
     margin: 10px 0;
+    resize: none;
   }
+
 `
+
 export const NormalMode = styled.div`
   ul {
-    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 40px;
+  }
+  li {
+    padding: 2px 10px;
+    border: 1px solid;
+    border-radius: 9999px;
+    border-color: ${(props) => props.theme.color.four};
+
+    list-style: none;
+    color: ${(props) => props.theme.color.two};
+    font-size: 12px;
+
+    transition: background 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      background: ${(props) => props.theme.color.transparent};
+    }
   }
   .buttons {
-    display: flex;
-    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
     gap: 5px;
+
+    display: flex;
     justify-content: flex-end;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px;
-    border-radius: 5px;
+
     button {
       display: flex;
       align-items: center;
       justify-content: center;
       border: none;
-      background-color: transparent;
       width: 28px;
       height: 28px;
-      border-radius: 5px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      background: none;
+      color: ${(props) => props.theme.color.four};
+      transition: background 0.2s ease;
+      &:hover {
+        background: ${(props) => props.theme.color.transparent};
+      }
     }
   }
 `

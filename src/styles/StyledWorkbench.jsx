@@ -16,6 +16,9 @@ export const Nav = styled.nav`
   .left-container {
     display: flex;
     margin: 0px 10px;
+    @media screen and (max-width: 768px) {
+      margin: 0px 5px;
+    }
     button {
       display: flex;
       align-items: center;
@@ -25,6 +28,9 @@ export const Nav = styled.nav`
       border-radius: 50px;
       background: none;
       color: ${(props) => props.theme.color.two};
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
     div {
       display: flex;
@@ -61,7 +67,6 @@ export const Nav = styled.nav`
         background: ${(props) => props.theme.color.two};
         color: ${(props) => props.theme.color.one};
       }
-
     }
   }
 
@@ -77,7 +82,7 @@ export const Nav = styled.nav`
       color: ${(props) => props.theme.color.four};
       transition: background 0.2s ease;
       &:hover {
-        background: ${(props) => props.theme.color.transparent};  
+        background: ${(props) => props.theme.color.transparent};
       }
     }
   }
@@ -95,6 +100,8 @@ export const Menu = styled.div`
   gap: 1px;
   width: ${(props) => (props['data-open'] ? '200px' : '60px')};
   transition: width 0.4s ease;
+  border-right: 1px solid;
+  border-color: ${(props) => props.theme.color.four};
   button {
     font-family: ${(props) => props.theme.font.family.one};
     width: ${(props) => (props['data-open'] ? '100%' : '40px')};
