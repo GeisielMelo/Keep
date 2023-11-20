@@ -10,7 +10,8 @@ export const Nav = styled.nav`
   align-items: center;
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid;
+  border-color: ${(props) => props.theme.color.four};
 
   .left-container {
     display: flex;
@@ -22,6 +23,8 @@ export const Nav = styled.nav`
       width: 40px;
       height: 40px;
       border-radius: 50px;
+      background: none;
+      color: ${(props) => props.theme.color.two};
     }
     div {
       display: flex;
@@ -34,6 +37,11 @@ export const Nav = styled.nav`
       h1 {
         display: flex;
         align-items: center;
+        color: ${(props) => props.theme.color.two};
+        font-weight: 500;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
     }
   }
@@ -44,8 +52,16 @@ export const Nav = styled.nav`
     input {
       width: 100%;
       height: 40px;
-      border: 1px solid #ccc;
+      background: ${(props) => props.theme.color.three};
+      color: ${(props) => props.theme.color.two};
       padding: 0px 10px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+      &:focus {
+        background: ${(props) => props.theme.color.two};
+        color: ${(props) => props.theme.color.one};
+      }
+
     }
   }
 
@@ -54,10 +70,16 @@ export const Nav = styled.nav`
     margin: 0px 10px;
     gap: 10px;
     button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-  }
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      background: none;
+      color: ${(props) => props.theme.color.four};
+      transition: background 0.2s ease;
+      &:hover {
+        background: ${(props) => props.theme.color.transparent};  
+      }
+    }
   }
 `
 
@@ -71,13 +93,13 @@ export const Menu = styled.div`
   height: calc(100vh - 50px);
   padding: 10px;
   gap: 1px;
-  border-right: 1px solid #ccc;
   width: ${(props) => (props['data-open'] ? '200px' : '60px')};
   transition: width 0.4s ease;
   button {
     width: ${(props) => (props['data-open'] ? '100%' : '40px')};
     transition: width 0.5s ease;
     height: 40px;
+    border-radius: 9999px;
   }
   span {
     display: flex;

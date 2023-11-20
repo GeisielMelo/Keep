@@ -13,7 +13,7 @@ export const Input = styled.div`
   display: flex;
   max-width: 310px;
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => props.theme.color.four};
 
   input {
     width: 100%;
@@ -26,7 +26,7 @@ export const Input = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
+    background-color: ${(props) => props.theme.color.two};
   }
 `
 
@@ -40,13 +40,18 @@ export const LabelContainer = styled.div`
   div {
     display: flex;
     align-items: center;
-    padding: 5px 10px;
+    justify-content: center;
+    padding: 5px 20px;
     border-radius: 5px;
-    background-color: #eee;
+    background: ${(props) => props.theme.color.two};
     margin: 10px;
+    border-radius: 9999px;
   }
   p {
     margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   button {
     display: flex;
