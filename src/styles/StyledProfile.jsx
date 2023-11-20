@@ -9,7 +9,7 @@ export const Container = styled.div`
   right: 10px;
   padding: 20px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.color.six};  
   box-shadow: 0 1px 5px black;
   z-index: 2;
 
@@ -19,7 +19,7 @@ export const Container = styled.div`
     font-weight: 500;
     line-height: 150%;
     text-transform: capitalize;
-    font-family: ${(props) => props.theme.font.family.one};
+    color: ${(props) => props.theme.color.two}; 
   }
 
   h2 {
@@ -27,8 +27,7 @@ export const Container = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    color: #b7b5b5;
-    font-family: ${(props) => props.theme.font.family.one};
+    color: ${(props) => props.theme.color.seven};  
   }
 
   p {
@@ -39,8 +38,8 @@ export const Container = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    font-family: ${(props) => props.theme.font.family.one};
     font-size: ${(props) => props.theme.font.size.sm};
+    color: ${(props) => props.theme.color.seven}; 
 
     &:hover {
       border-radius: 4px;
@@ -52,5 +51,5 @@ export const Line = styled.div`
   width: 100%;
   height: 1px;
   margin: 10px 0;
-  background-color: #b7b5b5;
+  background-color: ${(props) => props.theme.color.seven}; 
 `
