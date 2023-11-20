@@ -11,10 +11,16 @@ export const Archive = ({ id, title, description, labels }) => {
     await updateNote(id, title, description, labels, false)
   }
 
+  const handleFilterLongStrings = (str) => {
+    return str.replace(/\b\w{13,}\b/g, function (match) {
+      return match.substring(0, 10) + '...'
+    })
+  }
+
   return (
     <Container id={id}>
       <h1>{title}</h1>
-      <p>{description}</p>
+      <p>{handleFilterLongStrings(description)}</p>
       <ul>
         {labels.map((label, index) => (
           <li key={index} onClick={() => setSearch(label)}>

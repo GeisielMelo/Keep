@@ -35,12 +35,22 @@ export const Note = ({ index, title, description, labels, archivable }) => {
     await removeNote(index)
   }
 
+  const handleFilterLongStrings = (str) => {
+    return str.replace(/\b\w{13,}\b/g, function (match) {
+      return match.substring(0, 10) + '...'
+    })
+  }
+
   return (
     <Container>
       <EditMode id={index} ref={focus}>
         {isFocused ? (
           <>
-            <textarea className='textarea-title' value={titleValue} onChange={(e) => setTitleValue(e.target.value)} />
+            <textarea
+              className='textarea-title'
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+            />
             <textarea
               className='textarea-description'
               value={descriptionValue}
@@ -52,7 +62,7 @@ export const Note = ({ index, title, description, labels, archivable }) => {
         ) : (
           <>
             <h1>{title}</h1>
-            <p>{description}</p>
+            <p>{handleFilterLongStrings(description)}</p>
           </>
         )}
       </EditMode>
