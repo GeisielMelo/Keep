@@ -5,7 +5,7 @@ export const Section = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-color: #060b10;
 `
 
@@ -33,7 +33,7 @@ export const Container = styled.div`
   }
   h1 {
     font-size: ${(props) => props.theme.font.size.md};
-    font-weight: ${(props) => props.theme.font.weight.bold};
+    font-weight: 600;
     color: #fff;
   }
   input {
@@ -63,7 +63,7 @@ export const Container = styled.div`
     cursor: pointer;
     transition: 0.2s;
     font-size: ${(props) => props.theme.font.size.sm};
-    font-weight: ${(props) => props.theme.font.weight.bold};
+    font-weight: 600;
     color: #12181f;
     &:hover {
       background-color: #8efbf7;
@@ -74,7 +74,7 @@ export const Container = styled.div`
     cursor: pointer;
     text-decoration: none;
     font-size: ${(props) => props.theme.font.size.es};
-    font-weight: ${(props) => props.theme.font.weight.bold};
+    font-weight: 600;
     border-bottom: 1px solid #32e6e2;
   }
 
@@ -82,7 +82,7 @@ export const Container = styled.div`
     color: #fff;
     text-decoration: none;
     font-size: ${(props) => props.theme.font.size.es};
-    font-weight: ${(props) => props.theme.font.weight.bold};
+    font-weight: 600;
     span {
       color: #32e6e2;
       cursor: pointer;
@@ -92,6 +92,8 @@ export const Container = styled.div`
 `
 
 export const Footer = styled.footer`
+  display: none; // Disabled footer
+
   width: 100%;
   height: 50px;
   position: absolute;
