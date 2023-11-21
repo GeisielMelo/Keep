@@ -21,7 +21,7 @@ export const NewNoteContainer = styled.div`
     align-items: center;
     max-width: 340px;
     width: 100%;
-    padding: 20px;
+    padding: 10px 5px 10px 5px;
     margin-top: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -31,18 +31,26 @@ export const NewNoteContainer = styled.div`
   textarea,
   input {
     padding: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.367);
     width: 100%;
     resize: none;
     height: 100%;
+    border-radius: 5px;
+    background: none;
+    color: ${(props) => props.theme.color.two};
   }
   input {
     height: 30px;
     margin-bottom: 5px;
+    font-size: ${(props) => props.theme.font.size.es};
+    font-family: ${(props) => props.theme.font.family.one};
   }
   textarea {
     height: 50px;
     margin-bottom: 5px;
+    &::placeholder {
+      font-size: ${(props) => props.theme.font.size.es};
+      font-family: ${(props) => props.theme.font.family.one};
+    }
   }
   button {
     position: absolute;
@@ -56,7 +64,7 @@ export const NewNoteContainer = styled.div`
     justify-content: center;
 
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    background-color: white;
+    color: ${(props) => props.theme.color.two};
+    background-color: ${(props) => props.theme.color.five};
   }
 `
