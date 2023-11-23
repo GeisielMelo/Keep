@@ -1,10 +1,12 @@
 import React, { useState, useEffect, createContext } from 'react'
 import lodash from 'lodash'
-import { createRepository, fetchRepository, updateRepository } from '../services/api'
+import { createRepository, fetchRepository, updateRepository, signOut } from '../services/api'
+import { useNavigate } from 'react-router-dom'
 
 export const NotesContext = createContext()
 
 export const NotesProvider = ({ children }) => {
+  const navigate = useNavigate()
   const [data, setData] = useState(null)
   const [labels, setLabels] = useState([])
   const [notes, setNotes] = useState([])
@@ -12,6 +14,18 @@ export const NotesProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
   useEffect(() => {
+    const disconnect = async () => {
+      try {
+        await signOut()
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
+        api.defaults.headers.common.Authorization = null
+        navigate('/')
+      } catch (error) {
+        console.error()
+      }
+    }
+
     const fetchData = async () => {
       const user = localStorage.getItem('user')
       if (!user) {
@@ -25,6 +39,9 @@ export const NotesProvider = ({ children }) => {
         setNotes(response.data.notes)
         setLabels(response.data.labels)
       } catch (error) {
+        if (error.response.status === 401) {
+          disconnect()
+        }
         if (error.response.status === 404) {
           const response = await createRepository(JSON.parse(user))
           setData(response.data)
@@ -48,7 +65,9 @@ export const NotesProvider = ({ children }) => {
           }
         }
       } catch (error) {
-        console.error(error)
+        if (error.response.status === 401) {
+          disconnect()
+        }
       } finally {
         setSyncing(false)
       }
