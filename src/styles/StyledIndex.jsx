@@ -94,13 +94,6 @@ export const Cards = styled.div`
 `
 
 export const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
-
-  @media screen and (max-width: 768px) {
-    position: static;
-  }
-
   display: flex;
   justify-content: center;
   align-items: center;
