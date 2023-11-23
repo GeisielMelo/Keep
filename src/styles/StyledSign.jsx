@@ -1,5 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+const ElementDisabled = css`
+  &:disabled {
+    cursor: not-allowed;
+  }
+`
 export const Section = styled.section`
   display: flex;
   justify-content: center;
@@ -37,6 +42,7 @@ export const Container = styled.div`
     color: #fff;
   }
   input {
+    ${ElementDisabled}
     max-width: 380px;
     width: 100%;
     height: 40px;
@@ -52,6 +58,7 @@ export const Container = styled.div`
     }
   }
   button {
+    ${ElementDisabled}
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +67,6 @@ export const Container = styled.div`
     height: 40px;
     border-radius: 5px;
     background-color: #32e6e2;
-    cursor: pointer;
     transition: 0.2s;
     font-size: ${(props) => props.theme.font.size.sm};
     font-weight: 600;
@@ -84,8 +90,8 @@ export const Container = styled.div`
     font-size: ${(props) => props.theme.font.size.es};
     font-weight: 600;
     span {
-      color: #32e6e2;
       cursor: pointer;
+      color: #32e6e2;
       border-bottom: 1px solid #32e6e2;
     }
   }
