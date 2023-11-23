@@ -27,8 +27,8 @@ export const Profile = () => {
       </button>
       {isFocused && (
         <Container>
-          <h1>{userData ? 'Welcome!' : 'Oh no :('}</h1>
-          <h2>{userData ? userData.email : 'Offline'}</h2>
+          <h1>Settings</h1>
+          <h2>{userData ? userData.email : 'Loading...'}</h2>
           <Line />
           <p onClick={() => logout()}>Logout</p>
         </Container>

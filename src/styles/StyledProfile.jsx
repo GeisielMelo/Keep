@@ -41,6 +41,7 @@ export const Container = styled.div`
     font-size: ${(props) => props.theme.font.size.sm};
     color: ${(props) => props.theme.color.seven}; 
 
+    transition: all 0.3s ease-in-out;
     &:hover {
       border-radius: 4px;
       padding-left: 10px;
