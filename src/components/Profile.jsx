@@ -1,12 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import { Wrapper, Container, Line } from '../styles/StyledProfile'
 import { useDivFocus } from '../hook/useDivFocus'
 import { AuthContext } from '../context/AuthContext'
+import { fetchUserData } from '../services/api'
 
 export const Profile = () => {
   const { focus, isFocused } = useDivFocus()
-  const { userData, logout } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
+  const [userData, setUserData] = useState(null)
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await fetchUserData(user)
+      setUserData(response.data)
+    }
+    if (!userData) {
+      fetch()
+    }
+  }, [userData])
 
   return (
     <Wrapper ref={focus}>
