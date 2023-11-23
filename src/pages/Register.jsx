@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Section, Footer } from '../styles/StyledSign'
 import { AuthContext } from '../context/AuthContext'
 import { useAlert } from '../context/AlertContext'
+import { Loading } from '../components/animated/Loading'
 
 const Register = () => {
   const navigate = useNavigate()
   const showAlert = useAlert()
   const { user, register } = useContext(AuthContext)
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -18,15 +20,24 @@ const Register = () => {
   }, [user])
 
   const handleRegister = async () => {
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
     if (!email || !password) {
-      showAlert('Email or password not provided.', 'error')
+      showAlert('Email or password not provided.', 'info')
+      return
+    }
+
+    if (!validEmail) {
+      showAlert('Invalid email.', 'warning')
       return
     }
 
     try {
+      setLoading(true)
       await register(email, password)
     } catch (error) {
       showAlert('Email already taken.', 'error')
+      setLoading(false)
     }
   }
 
@@ -39,29 +50,41 @@ const Register = () => {
   return (
     <Section>
       <Container>
-        <h1>Cadastre-se com e-mail</h1>
+        <h1>Sign up with email</h1>
         <input
           type='email'
           placeholder='Email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={!loading ? handleKeyDown : null}
+          disabled={loading}
         />
         <input
           type='password'
-          placeholder='Senha'
+          placeholder='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={!loading ? handleKeyDown : null}
+          disabled={loading}
         />
-        <button onClick={() => handleRegister()}>Cadastrar</button>
-        <p>
-          Já possui uma conta? <span onClick={() => navigate('/sign-in')}>Entrar</span>
-        </p>
+
+        <button disabled={loading} onClick={() => handleRegister()}>
+          {loading ? <Loading size='22px' /> : 'Register'}
+        </button>
+
+        {!loading && (
+          <p>
+            Already have an account?{' '}
+            <span onClick={() => !loading && navigate('/sign-in')}>
+              Sign in
+            </span>
+          </p>
+        )}
       </Container>
       <Footer>
         <p>
-          Ao se cadastrar no aplicativo, você concorda com nossos <a href='#'>termos de serviço.</a>
+          By logging into the application, you agree to our{' '}
+          <a href='#'>terms of service.</a>
         </p>
       </Footer>
     </Section>

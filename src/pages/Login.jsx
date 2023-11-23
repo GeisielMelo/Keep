@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Section, Footer } from '../styles/StyledSign'
 import { AuthContext } from '../context/AuthContext'
 import { useAlert } from '../context/AlertContext'
+import { Loading } from '../components/animated/Loading'
 
 const Login = () => {
   const navigate = useNavigate()
   const showAlert = useAlert()
   const { user, login } = useContext(AuthContext)
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -18,16 +20,26 @@ const Login = () => {
   }, [user])
 
   const handleLogin = async () => {
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
     if (!email || !password) {
-      showAlert('Email or password not provided.', 'error')
+      showAlert('Email or password not provided.', 'info')
       return
     }
 
-    try {
-      await login(email, password)
-    } catch (error) {
-      showAlert('Wrong email or password.', 'error')
+    if (!validEmail) {
+      showAlert('Invalid email.', 'warning')
+      return
     }
+
+    if (email)
+      try {
+        setLoading(true)
+        await login(email, password)
+      } catch (error) {
+        showAlert('Wrong email or password.', 'error')
+        setLoading(false)
+      }
   }
 
   const handleKeyDown = (e) => {
@@ -39,29 +51,41 @@ const Login = () => {
   return (
     <Section>
       <Container>
-        <h1>Entrar</h1>
+        <h1>Sign in</h1>
         <input
           type='email'
           placeholder='Email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={!loading ? handleKeyDown : null}
+          disabled={loading}
         />
         <input
           type='password'
-          placeholder='Senha'
+          placeholder='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={!loading ? handleKeyDown : null}
+          disabled={loading}
         />
-        <button onClick={() => handleLogin()}>Entrar</button>
-        <p>
-          Ainda não tem uma conta? <span onClick={() => navigate('/sign-up')}>Cadastre-se</span>
-        </p>
+
+        <button disabled={loading} onClick={() => handleLogin()}>
+          {loading ? <Loading size='22px' /> : 'Login'}
+        </button>
+
+        {!loading && (
+          <p>
+            Not have an account yet?{' '}
+            <span onClick={() => !loading && navigate('/sign-up')}>
+              Sign up
+            </span>
+          </p>
+        )}
       </Container>
       <Footer>
         <p>
-          Ao entrar no aplicativo, você concorda com nossos <a href='#'>termos de serviço.</a>
+          By logging into the application, you agree to our{' '}
+          <a href='#'>terms of service.</a>
         </p>
       </Footer>
     </Section>
