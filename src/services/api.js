@@ -38,3 +38,8 @@ export const fetchRepository = async (id) => {
 export const updateRepository = async (id, notes, labels) => {
   return api.patch('/repositories/', { id, notes, labels })
 }
+
+// Pings
+export const pingList = async () => {
+  return api.get('/app/pings')
+}

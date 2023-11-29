@@ -15,7 +15,6 @@ export const Hero = styled.div`
   justify-content: center;
 
   height: 100svh;
-  
 
   width: 100%;
   color: #fff;
@@ -95,12 +94,21 @@ export const Cards = styled.div`
 
 export const Footer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   width: 100%;
   height: 50px;
   background-color: #060b10;
+
+  div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
 
   p {
     font-size: 12px;

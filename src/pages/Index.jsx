@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { Status } from '../components/Status'
 import { Section, Hero, Technologies, Cards, Footer } from '../styles/StyledIndex'
 
 const Index = () => {
@@ -67,6 +68,10 @@ const Index = () => {
             Geisiel Melo
           </a>
         </p>
+        <div>
+          <p>Status</p>
+          <Status />
+        </div>
       </Footer>
     </Section>
   )
