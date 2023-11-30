@@ -46,6 +46,7 @@ export const NotesProvider = ({ children }) => {
           const response = await createRepository(JSON.parse(user))
           setData(response.data)
         } else {
+          console.log(error)
           console.error('Internal server error.')
         }
       } finally {
@@ -87,6 +88,14 @@ export const NotesProvider = ({ children }) => {
   }
 
   const removeLabel = (label) => {
+    const newNotes = notes.map((note) => {
+      if (note.labels.includes(label)) {
+        note.labels = note.labels.filter((l) => l !== label)
+      }
+      return note
+    })
+
+    setNotes(newNotes)
     setLabels((prevLabels) => prevLabels.filter((l) => l !== label))
   }
 
