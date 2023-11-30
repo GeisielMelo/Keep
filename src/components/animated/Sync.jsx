@@ -17,7 +17,7 @@ const Container = styled.div`
   }
 
   .animated {
-    animation: spin 0.5s linear infinite;
+    animation: spin 0.9s linear infinite;
     transition: all 0.2s ease-in-out;
 
     @keyframes spin {
