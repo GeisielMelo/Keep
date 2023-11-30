@@ -13,7 +13,7 @@ export const Container = styled.div`
   border: 1px solid;
   border-color: ${(props) => props.theme.color.four};
   border-radius: 8px;
-  
+
   @media screen and (max-width: 768px) {
     max-width: 100%;
     margin-right: 5px;
@@ -71,6 +71,11 @@ export const EditMode = styled.div`
     height: 50px;
     font-size: ${(props) => props.theme.font.size.es};
     color: ${(props) => props.theme.color.two};
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid;
+    border-color: ${(props) => props.theme.color.four};
+    border-radius: 8px;
     font-weight: 500;
     background: none;
     resize: none;
@@ -79,11 +84,14 @@ export const EditMode = styled.div`
     height: 140px;
     font-size: ${(props) => props.theme.font.size.sm};
     color: ${(props) => props.theme.color.two};
+    padding: 5px;
+    border: 1px solid;
+    border-color: ${(props) => props.theme.color.four};
+    border-radius: 8px;
     background: none;
     margin: 10px 0;
     resize: none;
   }
-
 `
 
 export const NormalMode = styled.div`

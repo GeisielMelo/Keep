@@ -11,7 +11,7 @@ export const Section = styled.section`
   align-items: center;
   width: 100%;
   height: 100dvh;
-  background-color: #060b10;
+  background-color: rgb(6, 11, 16);
 `
 
 export const Container = styled.div`
@@ -39,7 +39,7 @@ export const Container = styled.div`
   h1 {
     font-size: ${(props) => props.theme.font.size.md};
     font-weight: 600;
-    color: #fff;
+    color: rgb(255, 255, 255);
   }
   input {
     ${ElementDisabled}
@@ -48,13 +48,13 @@ export const Container = styled.div`
     height: 40px;
     padding: 0 10px;
     border-radius: 5px;
-    background-color: #12181f;
+    background-color: rgb(18, 24, 31, 255);
     border: 1px solid;
-    border-color: #3e454e;
-    color: #fff;
+    border-color: rgb(62, 69, 78);
+    color: rgb(255, 255, 255);
     transition: 0.2s ease-in-out;
     &:focus {
-      border-color: #fff;
+      border-color: rgb(255, 255, 255);
     }
   }
   button {
@@ -66,33 +66,33 @@ export const Container = styled.div`
     width: 100%;
     height: 40px;
     border-radius: 5px;
-    background-color: #32e6e2;
+    background-color: rgb(50, 230, 226);
     transition: 0.2s;
     font-size: ${(props) => props.theme.font.size.sm};
     font-weight: 600;
-    color: #12181f;
+    color: rgb(18, 24, 31, 255);
     &:hover {
-      background-color: #8efbf7;
+      background-color: rgb(142, 251, 247);
     }
   }
   a {
-    color: #32e6e2;
+    color: rgb(50, 230, 226);
     cursor: pointer;
     text-decoration: none;
     font-size: ${(props) => props.theme.font.size.es};
     font-weight: 600;
-    border-bottom: 1px solid #32e6e2;
+    border-bottom: 1px solid rgb(50, 230, 226);
   }
 
   p {
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: ${(props) => props.theme.font.size.es};
     font-weight: 600;
     span {
       cursor: pointer;
-      color: #32e6e2;
-      border-bottom: 1px solid #32e6e2;
+      color: rgb(50, 230, 226);
+      border-bottom: 1px solid rgb(50, 230, 226);
     }
   }
 `
@@ -105,14 +105,14 @@ export const Footer = styled.footer`
   position: absolute;
   bottom: 0;
   text-align: center;
-  color: #7e8183;
+  color: rgb(126, 129, 131);
   font-size: ${(props) => props.theme.font.size.es};
   a {
     text-decoration: none;
     cursor: pointer;
-    color: #7e8183;
+    color: rgb(126, 129, 131);
     &:hover {
-      color: #a1a7ab;
+      color: rgb(161, 167, 171);
     }
   }
 `

@@ -10,23 +10,41 @@ export const Container = styled.div`
 `
 
 export const Input = styled.div`
+  position: relative;
   display: flex;
-  max-width: 310px;
   width: 100%;
-  border: 1px solid ${(props) => props.theme.color.four};
+  max-width: 250px;
+  border-radius: 6px;
 
   input {
     width: 100%;
     height: 40px;
-
+    background: ${(props) => props.theme.color.three};
+    color: ${(props) => props.theme.color.two};
     padding: 0px 10px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    &:focus {
+      background: ${(props) => props.theme.color.two};
+      color: ${(props) => props.theme.color.one};
+    }
   }
+
   button {
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: ${(props) => props.theme.color.two};
+    position: absolute;
+    right: 0px;
+    height: 30px;
+    width: 30px;
+    background: none;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-right: 10px;
+    color: ${(props) => props.theme.color.three};
+    &:hover {
+      transition: color 0.2s ease, background 0.2s ease;
+      color: ${(props) => props.theme.color.two};
+      background: ${(props) => props.theme.color.five};
+    }
   }
 `
 
@@ -41,7 +59,7 @@ export const LabelContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 20px;
+    padding: 5px 10px;
     border-radius: 5px;
     background: ${(props) => props.theme.color.two};
     margin: 10px;
