@@ -22,7 +22,9 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = async (email, password) => {
-    const { data : { user, token }  } = await signIn(email, password)
+    const {
+      data: { user, token },
+    } = await signIn(email, password)
 
     localStorage.setItem('user', JSON.stringify(user.id))
     localStorage.setItem('token', token)
@@ -30,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     api.defaults.headers.common.Authorization = `Bearer ${token}`
 
     setUser(user.id)
-    navigate('/')
+    navigate('/home')
   }
 
   const register = async (email, password) => {
@@ -41,13 +43,14 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await signOut()
+    } catch (error) {
+      console.error('Error on logout.')
+    } finally {
       localStorage.removeItem('user')
       localStorage.removeItem('token')
       api.defaults.headers.common.Authorization = null
       setUser(null)
       navigate('/')
-    } catch (error) {
-      console.error('Error on logout.')
     }
   }
 
