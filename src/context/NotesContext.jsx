@@ -87,7 +87,9 @@ export const NotesProvider = ({ children }) => {
     setLabels((prevLabels) => [...prevLabels, label])
   }
 
-  const removeLabel = (label) => {
+  const removeLabel = async (label) => {
+    const user = localStorage.getItem('user')
+    const newLabels = labels.filter((l) => l !== label)
     const newNotes = notes.map((note) => {
       if (note.labels.includes(label)) {
         note.labels = note.labels.filter((l) => l !== label)
@@ -95,8 +97,8 @@ export const NotesProvider = ({ children }) => {
       return note
     })
 
-    setNotes(newNotes)
     setLabels((prevLabels) => prevLabels.filter((l) => l !== label))
+    await updateRepository(JSON.parse(user), newNotes, newLabels)
   }
 
   const addNote = (title, description, labels = [], archived = false) => {
